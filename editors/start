@@ -1,0 +1,61 @@
+#!/usr/bin/env bash
+
+##
+# Configuration for the nano editor
+##
+
+##
+# Pretty output functions
+##
+function info () {
+	printf "\r  [ \033[00;34m..\033[0m ] %s\n" "$1"
+}
+function user () {
+	printf "\r  [ \033[0;33m??\033[0m ] %s " "$1"
+}
+function success () {
+	printf "\r\033[2K  [ \033[00;32mOK\033[0m ] %s\n" "$1"
+}
+function warn () {
+	printf "\r\033[2K  [\033[0;31mWARN\033[0m] %s\n" "$1"
+}
+function fail () {
+	printf "\r\033[2K  [\033[0;31mFAIL\033[0m] %s\n" "$1"
+	echo ''
+	exit 1
+}
+
+nanorc_configs=(
+    html css javascript json asm
+    c cmake sh nanorc java python
+    tex go ruby
+)
+
+# Sets the correct syntax highlighting directory
+if [[ "$(uname -s)" == "Darwin" ]]; then
+    # OSX's nano config location
+    config_path="/usr/local/share/nano"
+else
+    # Linux's nano config location
+    config_path="/usr/share/nano"
+fi
+
+if [[ -f $HOME/.nanorc ]]; then
+    success "Nano: Editor settings have already been set"
+else
+    info "Nano: Editor settings have not been applied yet, applying now"
+    {
+        echo "# Nano editor configuration files"
+        echo ""
+        echo "set const"
+        echo "set tabsize 4"
+        echo ""
+        echo "# Included syntax highlighting:"
+
+        for config in "${nanorc_configs[@]}"; do
+            printf "\tinclude %s/%s.nanorc\n" "$config_path" "${config}"
+        done
+    } >> "$HOME"/.nanorc
+
+    success "Nano: Editor settings are now applied"
+fi

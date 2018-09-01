@@ -1,0 +1,51 @@
+# Shell configurations
+
+# Implements colouring for unix
+	if [ -f $HOME/.colour ]; then
+		source $HOME/.colour
+	fi
+
+# Implements server aliases
+	if [ -f $HOME/.servers ]; then
+		source $HOME/.servers
+	fi
+
+# Implements listing aliases
+	if [ -f $HOME/.utilities ]; then
+		source $HOME/.utilities
+	fi
+
+	if [ -f $HOME/.listing_unix ]; then
+		source $HOME/.listing_unix
+	fi
+
+# Implements box-specific commands for ease (e.g. differing commands on laptop verus desktop)
+	if [ -f $HOME/.specific ]; then
+		source $HOME/.specific
+	fi
+
+# Enables context switching for java & python envs
+	if [ -f $HOME/.env ]; then
+		source $HOME/.env
+	fi
+
+# Domain specific
+	if [[ $(uname -s | grep "Linux") != "" ]]; then
+		# Linux only
+		cat ~/.motd # Sets up MotD
+		eval `ssh-agent` > /dev/null && echo "SSH agent enabled" # Starts the ssh agent
+		PATH="$HOME/.fancy:$PATH"
+	else
+		# OSX only
+
+		# Implements using GNU tools over baked in ones
+		PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
+		alias man='_() { echo $1; man -M $(brew --prefix)/opt/coreutils/libexec/gnuman $1 1>/dev/null 2>&1;  if [ "$?" -eq 0 ]; then man -M $(brew --prefix)/opt/coreutils/libexec/gnuman $1; else man $1; fi }; _'
+
+		# Adds in curl's override
+		PATH="/usr/local/opt/curl/bin:$PATH"
+
+		# Adds in make's override
+		PATH="/usr/local/opt/make/libexec/gnubin:$PATH"
+		MANPATH="/usr/local/opt/make/libexec/gnuman:$MANPATH"
+	fi

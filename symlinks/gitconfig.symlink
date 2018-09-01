@@ -1,0 +1,46 @@
+[user]
+	name = Jason Yao
+	email = jasony.edu@gmail.com
+[core]
+	editor = vim
+	whitespace = fix,-indent-with-non-tab,trailing-space,cr-at-eol
+	excludesfile = ~/.gitignore
+	pager = diff-so-fancy | less --tabs=4 -RFX
+[sendemail]
+	smtpencryption = tls
+	smtpserver = smtp.gmail.com
+	smtpuser = pavan.sss1991@gmail.com
+	smtppass = password
+	smtpserverport = 587
+[web]
+	browser = google-chrome
+[instaweb]
+	httpd = apache2 -f
+[rerere]
+	enabled = 1
+	autoupdate = 1
+[push]
+	default = simple
+[color]
+	ui = auto
+[color "branch"]
+	current = yellow bold
+	local = green bold
+	remote = cyan bold
+[color "diff"]
+	meta = yellow bold
+	frag = magenta bold
+	old = red bold
+	new = green bold
+	whitespace = red reverse
+[color "status"]
+	added = green bold
+	changed = yellow bold
+	untracked = red bold
+[diff]
+	tool = vimdiff
+[difftool]
+	prompt = false
+[github]
+	user = pkumar
+token = token

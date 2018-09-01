@@ -1,0 +1,18 @@
+{
+    "git": {
+        "user": {
+            "name": "Jason Yao",
+            "email": "Hello@JasonYao.com"
+        },
+        "push": {
+            "default": "simple"
+        },
+        "color": {
+            "ui": "auto"
+        },
+        "core": {
+            "editor": "vim",
+            "pager": "diff-so-fancy | less --tabs=4 -RFX"
+        }
+    }
+}

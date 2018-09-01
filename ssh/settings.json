@@ -1,0 +1,8 @@
+{
+    "ssh": {
+        "symlinks": {
+            "config": "~/.ssh/config",
+            "authorized_keys": "~/.ssh/authorized_keys"
+        }
+    }
+}

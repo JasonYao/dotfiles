@@ -1,0 +1,372 @@
+#!/usr/bin/env bash
+
+##
+# Sets reasonable OS X defaults
+# NOTE: This class should eventually be migrated into configuration
+# at some point in time.
+##
+
+##
+# Pretty output functions
+##
+function info () {
+	printf "\r  [ \033[00;34m..\033[0m ] %s\n" "$1"
+}
+function user () {
+	printf "\r  [ \033[0;33m??\033[0m ] %s " "$1"
+}
+function success () {
+	printf "\r\033[2K  [ \033[00;32mOK\033[0m ] %s\n" "$1"
+}
+function warn () {
+	printf "\r\033[2K  [\033[0;31mWARN\033[0m] %s\n" "$1"
+}
+function fail () {
+	printf "\r\033[2K  [\033[0;31mFAIL\033[0m] %s\n" "$1"
+	echo ''
+	exit 1
+}
+
+# Constants
+firewall="/usr/libexec/ApplicationFirewall/socketfilterfw"
+
+# Apps that you want included in the default dock
+valid_apps=("launchpad" "Notes" "iTunes" "appstore" "systempreferences" "firefox")
+
+# Usage: check_and_set_firewall "--getblockall" "DISABLED" "--setblockall on" "default to deny incoming traffic" "Default to deny incoming traffic"
+function check_and_set_firewall () {
+	if [[ $($firewall "$1" | grep "$2") != "" ]]; then
+		if sudo $firewall $3 > /dev/null ; then
+			success "Firewall: Successfully set $4"
+		else
+			fail "Firewall: Failed to set $4"
+		fi
+	else
+		success "Firewall: $5 has already been set"
+	fi
+}
+
+# $1 = plist_source
+# $2 = target_value
+# $3 = message_already_complete
+# $4 = target_type_and_value
+# $5 = message_success
+function check_and_set_default() {
+	if [[ $(defaults read $1 2> /dev/null) == "$2" ]]; then
+		success "$3"
+	else
+		defaults write $1 $4
+		success "$5"
+	fi
+}
+
+# $1 = plist_source
+# $2 = target_value
+# $3 = message_already_complete
+# $4 = target_type_and_value
+# $5 = message_success
+function sudo_check_and_set_default() {
+	if [[ $(sudo defaults read $1 2> /dev/null) == "$2" ]]; then
+		success "$3"
+	else
+		sudo defaults write $1 $4
+		success "$5"
+	fi
+}
+
+# $1 = preference_name
+# $2 = target_value
+# $3 = not_enabled_info_message
+# $4 = target_type_and_value
+# $5 = message_success
+# $6 = message_alread_complete
+function check_and_set_dock() {
+	if [[ $(defaults read com.apple.Dock | grep "$1 = $2") == "" ]]; then
+		info "$3"
+		defaults write com.apple.Dock $1 $4
+		killall Dock
+		sleep 2
+		success "$5"
+	else
+		success "$6"
+	fi
+}
+
+# $1 = app_name
+function check_and_manage_dock_apps() {
+	if [[ $(defaults read com.apple.Dock persistent-apps | grep "$1") == "" ]]; then
+		info "Dock: $1 is not set on the dock, setting now"
+		defaults write com.apple.dock persistent-apps -array-add \
+			"<dict><key>tile-data</key><dict><key>file-data</key><dict><key>_CFURLString</key><string>/Applications/$1.app</string><key>_CFURLStringType</key><integer>0</integer></dict></dict></dict>"
+		success "Dock: $1 is now set on the dock"
+	else
+		success "Dock: $1 is already set on the dock"
+	fi
+}
+
+function repopulate_all_dock_apps() {
+	check_and_manage_dock_apps "Launchpad"
+	check_and_manage_dock_apps "Notes"
+	check_and_manage_dock_apps "iTunes"
+	check_and_manage_dock_apps "App Store"
+	check_and_manage_dock_apps "System Preferences"
+	check_and_manage_dock_apps "Firefox"
+	killall Dock
+}
+
+# Does this once instead of doing all over each time
+invert_string="grep -v"
+
+for app in "${valid_apps[@]}"; do
+    invert_string+=" -e \"${app}\""
+done
+
+function check_and_remove_bad_dock_apps() {
+	if [[ $(defaults read com.apple.Dock persistent-apps | grep "bundle-identifier" | eval "$invert_string") != "" ]]; then
+		info "Dock: Contains non-default applications, killing off now"
+		defaults delete com.apple.Dock persistent-apps
+		killall Dock
+		success "Dock: All non-default applications are now sanitised"
+	else
+		success "Dock: All non-default applications are already sanitised"
+	fi
+	info "Dock: Checking for all default app existences"
+	repopulate_all_dock_apps
+	success "Dock: All default apps are in place"
+}
+
+function check_and_manage_dock_folders() {
+	if [[ $(defaults read com.apple.Dock persistent-others | grep "$1") == "" ]]; then
+		info "Dock: $1 folder is not set on the dock, setting now"
+		defaults write com.apple.dock persistent-others -array-add \
+			"<dict><key>tile-data</key><dict><key>file-data</key><dict><key>_CFURLString</key><string>$1</string><key>_CFURLStringType</key><integer>0</integer></dict></dict><key>tile-type</key><string>directory-tile</string></dict>"
+		success "Dock: $1 folder is now set on the dock"
+	else
+		success "Dock: $1 folder is already set on the dock"
+	fi
+}
+
+# NOTE Secure empty trash was removed due to deleterious effects on SSDs, and is thus no longer supported
+
+# Disable press-and-hold for keys in favor of key repeat
+	check_and_set_default "-g ApplePressAndHoldEnabled" 0 "Keyboard: Press & hold has already been disabled" "-bool false" "Keyboard: Press & hold is now disabled"
+
+# Sets a really fast key repeat
+	check_and_set_default "NSGlobalDomain KeyRepeat" "1" "Keyboard: 0-delay key repeat has already been enabled" "-int 1" "Keyboard: 0-delay key repeat is now enabled"
+	check_and_set_default "NSGlobalDomain InitialKeyRepeat" "10" "Keyboard: 0-delay initial key repeat has already been enabled" "-int 10" "Keyboard: 0-delay initial key repeat is now enabled"
+
+# Sets the Finder prefs for showing a few different volumes on the Desktop
+	check_and_set_default "com.apple.finder ShowHardDrivesOnDesktop" 1 "Finder: Show hard drives on desktop is already enabled" "-bool true" \
+		"Finder: Show hard drives on desktop is now enabled"
+	check_and_set_default "com.apple.finder ShowExternalHardDrivesOnDesktop" 1 "Finder: Show external hard drives on desktop is already enabled" "-bool true" \
+		"Finder: Show external hard drives on desktop is now enabled"
+	check_and_set_default "com.apple.finder ShowRemovableMediaOnDesktop" 1 "Finder: Show removable media on desktop is already been enabled" "-bool true" \
+		"Finder: Show removable media on desktop is now enabled"
+
+# Sets battery percentage to be shown
+	check_and_set_default "com.apple.menuextra.battery ShowPercent" 1 "Battery: Show percent battery remaining is already enabled" "-bool true" "Battery: Show percent battery is now enabled"
+
+# Sets the screen and computer to never sleep
+info "Battery: Disabling computer/display sleep"
+sudo systemsetup -setcomputersleep Never
+sudo systemsetup -setdisplaysleep Never
+success "Battery: Successfully disabled computer/display sleep"
+
+# Sets the trackpad speed to max (to set to another value, set between 0 ~ 3, to disable set to -1)
+	check_and_set_default "-g com.apple.trackpad.scaling" "6" "Trackpad: Tracking speed is already max" "-int 6" "Trackpad: Tracking speed is now set to max"
+
+# Disables "natural" scrolling
+    check_and_set_default "-g com.apple.swipescrolldirection" 0 "Trackpad: Natural scrolling is already disabled" "-bool FALSE" "Trackpad: Natural scrolling is now disabled"
+
+# Sets up app expose gesture
+	check_and_set_default "com.apple.Dock showAppExposeGestureEnabled" 1 "Trackpad: Show app expose gesture is already enabled" "-bool true" "Trackpad: Show app expose gesture is now enabled"
+
+# Removes iCloud as the default save location
+	check_and_set_default "NSGlobalDomain NSDocumentSaveNewDocumentsToCloud" 0 "iCloud: Default save location is already set to local drive" "-bool false" \
+		"iCloud: Default save location is now set to the local drive"
+
+# Disables .DS_Store files on network volumes
+    check_and_set_default "com.apple.desktopservices DSDontWriteNetworkStores" 1 "iCloud: .DS_Store file writing is already disabled on network drives" "-bool true" \
+		"iCloud: .DS_Store file writing is now disabled on network drives"
+
+# Enables recent applications stack in dock
+	if [[ $(defaults read com.apple.Dock persistent-others | grep recents-tile) == "" ]]; then
+		info "Dock: Recent applications stack is not installed, installing now"
+		defaults write com.apple.dock persistent-others -array-add '{"tile-data" = {"list-type" = 1;}; "tile-type" = "recents-tile";}'
+		killall Dock
+		success "Dock: Recent applications stack is now installed"
+	else
+		success "Dock: Recent applications stack is already installed"
+	fi
+
+# Sets up normal dock experience
+	check_and_set_dock "autohide" "1" "Dock: Autohiding is not enabled, enabling now" "-bool true" "Dock: Autohiding is now enabled" \
+	"Dock: Autohiding is already enabled"
+
+	check_and_set_dock "magnification" "1" "Dock: Magnification is not enabled, enabling now" "-bool true" "Dock: Magnification is now enabled" \
+		"Dock: Magnification is already enabled"
+
+	# Sets the size of icons (largesize == under magnification)
+	check_and_set_dock "tilesize" "64" "Dock: Tilesize is not correctly set" "-int 64" "Dock: Tilesize is now correctly set" "Dock: Tilesize is already correctly set"
+	check_and_set_dock "largesize" "80" "Dock: Magnification tilesize is not correctly set" "-int 80" "Dock: Magnification tilesize is now correctly set" \
+		"Dock: Magnification tilesize is already correctly set"
+
+	# Enables recent applications stack in dock
+	if [[ $(defaults read com.apple.Dock persistent-others | grep recents-tile) == "" ]]; then
+		info "Dock: Recent applications stack is not installed, installing now"
+		defaults write com.apple.dock persistent-others -array-add '{"tile-data" = {"list-type" = 1;}; "tile-type" = "recents-tile";}'
+		killall Dock
+		success "Dock: Recent applications stack is now installed"
+	else
+		success "Dock: Recent applications stack is already installed"
+	fi
+
+	# Minimises the apps in the dock to those useful
+	check_and_remove_bad_dock_apps
+
+	# Checks for applications folder existence in dock
+	if [[ $(defaults read com.apple.dock persistent-others | grep "\"file-label\" = Applications;") == "" ]]; then
+		info "Dock: Application folder not found, adding now"
+		check_and_manage_dock_folders "Applications"
+		killall Dock
+	else
+		success "Dock: Application folder is already on the dock"
+	fi
+
+# Disables bluetooth if enabled
+	if [[ -f /Library/Preferences/com.apple.Bluetooth.plist ]]; then
+		if [[ $(defaults read com.apple.Bluetooth.plist ControllerPowerState 2> /dev/null) == "0" ]]; then
+			success "Bluetooth: BT is already disabled"
+		else
+			defaults write com.apple.Bluetooth.plist ControllerPowerState 0
+			success "Bluetooth: BT is now disabled"
+
+			# Kills the bluetooth server process
+			killall blued
+
+			# Unloads the daemon
+			launchctl unload /System/Library/LaunchDaemons/com.apple.blued.plist
+
+			# Reloads the daemon
+			launchctl load /System/Library/LaunchDaemons/com.apple.blued.plist
+
+			# Restarts the BT process (basically updates the icon to being disabled)
+			launchctl start com.apple.blued
+		fi
+	else
+		info "Bluetooth: BT was not found for this device"
+	fi
+
+# Disables guest accounts if enabled
+	warn "User: Guest account disabling is currently disabled for Sierra+ until bugfixed"
+	#check_and_set_default "com.apple.loginwindow.plist GuestEnabled" 0 "User: Guest account is already disabled" "-bool false" "User: Guest account is now disabled"
+
+# Sets input languages
+	# Traditional chinese pinyin dependency check
+	if [[ $(defaults read com.apple.HIToolbox.plist AppleEnabledInputSources | grep "inputmethod.TCIM\"") == "" ]]; then
+		defaults write com.apple.HIToolbox AppleEnabledInputSources -array-add \
+			'<dict><key>Bundle ID</key><string>com.apple.inputmethod.TCIM</string><key>InputSourceKind</key><string>Keyboard Input Method</string></dict>'
+	fi
+
+	# Checks for traditional chinese pinyin
+	if [[ $(defaults read com.apple.HIToolbox.plist AppleEnabledInputSources | grep ".TCIM.pinyin") == "" ]]; then
+		info "Languages: Adding Mandarin Pinyin input"
+		defaults write com.apple.HIToolbox AppleEnabledInputSources -array-add \
+			'<dict><key>Bundle ID</key><string>com.apple.inputmethod.TCIM</string><key>Input Mode</key><string>com.apple.inputmethod.TCIM.Pinyin</string><key>InputSourceKind</key><string>Input Mode</string></dict>'
+		success "Languages: Traditional Chinese input via pinyin is now installed"
+	else
+		success "Languages: Traditional Chinese input via pinyin is already installed"
+	fi
+
+	# Checks for traditional chinese hand writing
+	if [[ $(defaults read com.apple.HIToolbox.plist AppleEnabledInputSources | grep ChineseHandwriting) == "" ]]; then
+		info "Languages: Traditional Chinese input via hand writing is not installed, installing now"
+		defaults write com.apple.HIToolbox AppleEnabledInputSources -array-add \
+			'<dict><key>Bundle ID</key><string>com.apple.inputmethod.ChineseHandwriting</string><key>InputSourceKind</key><string>Non Keyboard Input Method</string></dict>'
+		success "Languages: Traditional Chinese input via hand writing is now installed"
+	else
+		success "Languages: Traditional Chinese input via hand writing is already installed"
+	fi
+
+	# Checks for English keyboard
+	if [[ $(defaults read com.apple.HIToolbox.plist AppleEnabledInputSources | grep "U.S.") == "" ]]; then
+		info "Languages: Adding US keyboard input"
+		defaults write com.apple.HIToolbox AppleEnabledInputSources -array-add \
+			'<dict><key>InputSourceKind</key><string>Keyboard Layout</string><key>KeyboardLayout ID</key><integer>0</integer><key>KeyboardLayout Name</key><string>U.S.</string></dict>'
+		success "Languages: Traditional Chinese input via pinyin is now installed"
+	else
+		success "Languages: Traditional Chinese input via pinyin is already installed"
+	fi
+
+	# Checks for whether the text input switcher is enabled
+	if [[ $(defaults read com.apple.systemuiserver menuExtras | grep "TextInput.menu") == "" ]]; then
+		info "Languages: Text input switcher is not enabled, enabling now"
+		defaults write com.apple.systemuiserver menuExtras -array-add \
+			'<string>/System/Library/CoreServices/Menu Extras/TextInput.menu</string>'
+		success "Languages: Text input switcher is now enabled"
+	else
+		success "Languages: Text input switcher is already enabled"
+	fi
+
+# Enables dark mode
+	if [[ $(sudo defaults read NSGlobalDomain AppleInterfaceStyle 2> /dev/null) == "Dark" ]]; then
+		success "Theme: Dark mode is already turned on"
+	else
+		sudo defaults write NSGlobalDomain AppleInterfaceStyle Dark
+		# Note: killall -KILL SystemUIServer doesn't do a full reset of the menubar, so a re-login is required
+		warn "Theme: Dark mode is now enabled, but requires a re-login for the menubar to reset"
+		killall Dock
+	fi
+
+# Disables indexing of external disks (e.g. network folders)
+	sudo_check_and_set_default "/Library/Preferences/com.apple.SpotlightServer.plist ExternalVolumesIgnore" 1 \
+		"Spotlight: External disk indexing is already disabled" "-bool True" "Spotlight: External disk indexing is now disabled"
+
+# Disables indexing and searching of the bootcamp volume if there is a bootcamp partition
+	if [[ -d /Volumes/BOOTCAMP ]]; then
+		# There is a bootcamp partition
+		if [[ $(sudo defaults read /Volumes/MacOS/.Spotlight-V100/VolumeConfiguration.plist Exclusions | grep "/Volumes/BOOTCAMP") == "" ]]; then
+			sudo defaults write /Volumes/MacOS/.Spotlight-V100/VolumeConfiguration.plist Exclusions -array-add '/Volumes/BOOTCAMP'
+			sudo launchctl stop com.apple.metadata.mds && sudo launchctl start com.apple.metadata.mds
+			success "Spotlight: Bootcamp partition has been excluded from normal indexing"
+		else
+			success "Spotlight: Bootcamp partition has already been excluded from normal indexing"
+		fi
+	else
+		success "Spotlight: There is no bootcamp partition to exclude from indexing"
+	fi
+
+# Disables automatic rearranging of spaces based on recent use
+check_and_set_default "com.apple.dock mru-spaces" 0 "Mission Control: Automatic rearranging spaces has already been disabled" \
+	"-bool false" "Mission Control: Automatic rearranging spaces is now disabled"
+
+# Points DNS to Google's DNS servers
+if [[ $(networksetup -getdnsservers Wi-Fi | grep "8.8.8.8") == "" ]]; then
+    info "DNS: Host's DNS servers do not point at Google, setting DNS servers now"
+		if networksetup -setdnsservers Wi-Fi 8.8.8.8 8.8.4.4 ; then
+			  success "DNS: Successfully set this host's DNS to point to google"
+		else
+			  fail "DNS: Failed to set this host's DNS to point to google"
+		fi
+else
+    success "DNS: Host's DNS servers already point at Google"
+fi
+
+# Sets the search domains to point to a dummy local file because fuck verizon
+if [[ $(networksetup -getsearchdomains Wi-Fi | grep ".local") == "" ]]; then
+	  info "Network Search: Network search is enabled and points to a dangerous 3rd party, resetting to secure local state"
+		if networksetup -setsearchdomains Wi-Fi .local ; then
+			  success "Network Search: Successfully disabled network search"
+		else
+			  fail "Network Search: Failed to disable network search"
+		fi
+else
+    success "Network Search: Network search is already disabled"
+fi
+
+# Sets the firewall rules
+	check_and_set_firewall "--getblockall" "DISABLED" "--setblockall on" "default to deny incoming traffic" "Default to deny incoming traffic"
+	check_and_set_firewall "--getstealthmode" "disabled" "--setstealthmode on" "default to activate stealth mode" "Stealth mode"
+	check_and_set_firewall "--getloggingmode" "off" "--setloggingmode on" "default to log traffic" "Traffic logging"
+	check_and_set_firewall "--getglobalstate" "disabled" "--setglobalstate on" "firewall to on" "Firewall"
+	check_and_set_firewall "--getallowsigned" "DISABLED" "--setallowsigned on" "default to allow signed binaries" "Allowing signed binaries"

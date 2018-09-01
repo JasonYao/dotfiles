@@ -1,0 +1,40 @@
+#!/usr/bin/env bash
+
+##
+# Setup script for SSH settings
+##
+
+ssh_directory="~/.ssh"
+
+##
+# Pretty output functions
+##
+function info () {
+	printf "\r  [ \033[00;34m..\033[0m ] %s\n" "$1"
+}
+function user () {
+	printf "\r  [ \033[0;33m??\033[0m ] %s " "$1"
+}
+function success () {
+	printf "\r\033[2K  [ \033[00;32mOK\033[0m ] %s\n" "$1"
+}
+function warn () {
+	printf "\r\033[2K  [\033[0;31mWARN\033[0m] %s\n" "$1"
+}
+function fail () {
+	printf "\r\033[2K  [\033[0;31mFAIL\033[0m] %s\n" "$1"
+	echo ''
+	exit 1
+}
+
+if [[ -d "$ssh_directory" ]]; then
+	success "SSH: SSH directory is already created"
+else
+	info "SSH: Setting up SSH directory"
+	if mkdir -p "$ssh_directory" ; then
+		success "SSH: SSH directory is now created"
+	else
+		fail "SSH: SSH directory failed to be created, please check permissions"
+	fi
+	chmod 700 "$ssh_directory"
+fi

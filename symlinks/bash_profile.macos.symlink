@@ -1,0 +1,11 @@
+# OSX specific dotfiles (alias to .bashrc)
+
+if [ -n "$BASH_VERSION" ] && [ -f $HOME/.bashrc ];then
+	source $HOME/.bashrc
+fi
+
+test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash"
+# Pydotfiles: Automatically set pyenv settings
+export PYENV_ROOT=/usr/local/var/pyenv
+if which pyenv > /dev/null; then eval "$(pyenv init -)"; fi
+if which pyenv-virtualenv-init > /dev/null; then eval "$(pyenv virtualenv-init -)"; fi

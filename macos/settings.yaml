@@ -1,0 +1,81 @@
+macos:
+    os:
+        - shell: "bash"
+        - packages:
+            - "coreutils"
+            - "wget"
+            - "autoconf"
+            - "automake"
+            - "make"
+            - "nano"
+            - "openssl"
+            - "mmv"
+            - "cmake"
+            - "bash"
+            - "readline"
+            - "diff-so-fancy"
+            - "unrar"
+
+            # These GNU commands normally install with a 'g' prefix
+            # in order to avoid name clashing on macos- this flag
+            # will remove that, and just install it with the same name
+            - "grep --with-default-names"
+            - "gnu-tar --with-default-names"
+            - "gnu-sed --with-default-names"
+
+            - "gawk"
+            - "gzip"
+            - "shellcheck"
+            - "vim"
+            - "node"
+            - "tree"
+            - "nmap"
+            - "tmux"
+            - "go"
+            - "curl"
+            - "webp"
+            - "gradle"
+            - "gpg2"
+            - "git"
+
+            # For Jekyll blog
+            - "imagemagick@6"
+        - applications:
+            # Common apps
+            - "torguard"
+            - "flux"
+            - "atom"
+            - "jetbrains-toolbox"
+            - "google-chrome"
+            - "firefox"
+            - "vlc"
+            - "qbittorrent"
+
+            - "mactex" # Note: installation takes a looong time
+            - "texmaker"
+            - "discord"
+            - "java"
+
+            - "iterm2"
+            # Uncommon apps (may be still useful)
+            - "filezilla"
+            - "little-snitch"
+            - "micro-snitch"
+
+            # Marked for deletion
+            - "synergy"
+            - "skype"
+        # TODO P3: Implement creating a default dock
+        # - default_dock:
+        #     - "launchpad"
+        #     - "Notes"
+        #     - "iTunes"
+        #     - "appstore"
+        #     - "systempreferences"
+        #     - "firefox"
+    - copy_files:
+        "fonts/FreeMono.ttf": "~/Library/Fonts/FreeMono.ttf"
+    - symlinks:
+        "com.googlecode.iterm2.plist": "~/Library/Preferences/com.googlecode.iterm2.plist"
+    - sudo_symlinks:
+        "~/.motd": "/etc/motd"

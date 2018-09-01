@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+
+##
+# MacOS-specific setup
+##
+
+# TODO P2: Add back in the ability to create a specific number of spaces
+# number_of_spaces=3
+
+# Checks for OSX defaults
+	if "$dotfiles_directory"/osx/setup-defaults ; then
+		success "OSX: Sane defaults installed"
+	else
+		fail "OSX: Failed to set sane defaults"
+	fi
+
+# Sets up background images
+    info "Background Image: Checking background image status"
+
+    # Note the enclosing single quotes around bash variables when trying to use them in applescripts
+    if osascript -e 'tell application "System Events" to set picture of every desktop to ("'$dotfiles_directory'/img/background1.png" as POSIX file as alias)' ; then
+        success "Background: Desktop image is now correctly set"
+    else
+        fail "Background: Desktop image failed to be set"
+    fi
