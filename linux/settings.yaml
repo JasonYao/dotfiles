@@ -1,9 +1,9 @@
-linux:
-    os:
-        shell: "bash"
-        packages:
-            # Common dependencies
-            - wget                  # Used in general downloading
-            - git                   # Used in general project upkeep
-            - unzip                 # Used with dealing with cached dotfile files
-            - build-essential       # Used in pre-compiling rbenv
+os:
+    name: "linux"
+    shell: "bash"
+    packages:
+        # Common dependencies
+        - wget                  # Used in general downloading
+        - git                   # Used in general project upkeep
+        - unzip                 # Used with dealing with cached dotfile files
+        - build-essential       # Used in pre-compiling rbenv

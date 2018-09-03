@@ -49,3 +49,8 @@
 		PATH="/usr/local/opt/make/libexec/gnubin:$PATH"
 		MANPATH="/usr/local/opt/make/libexec/gnuman:$MANPATH"
 	fi
+
+# Pydotfiles entry-point
+	if [ -f $HOME/.pydotfiles_entry]; then
+		source $HOME/.pydotfiles_entry
+	fi

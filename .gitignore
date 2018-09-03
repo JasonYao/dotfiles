@@ -1,2 +1,5 @@
 # OSX ignores
 .DS_Store
+
+# python ignores
+.python-version
