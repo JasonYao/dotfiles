@@ -1,6 +1,13 @@
 {
-    "symlinks": {
-        "config": "~/.ssh/config",
-        "authorized_keys": "~/.ssh/authorized_keys"
-    }
+    "actions": [
+        {
+            "action": "symlink",
+            "files": {
+                "config": "~/.ssh/config",
+                "authorized_keys": "~/.ssh/authorized_keys"
+            },
+            "hidden": false,
+            "sudo": false
+        }
+   ]
 }

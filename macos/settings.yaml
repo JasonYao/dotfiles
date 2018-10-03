@@ -73,11 +73,25 @@ os:
     #     - "appstore"
     #     - "systempreferences"
     #     - "firefox"
-copy_files:
+
+actions:
+- action: copy
+  files:
     "fonts/FreeMono.ttf": "~/Library/Fonts/FreeMono.ttf"
-
-symlinks:
+  sudo: false
+- action: symlink
+  files:
     "com.googlecode.iterm2.plist": "~/Library/Preferences/com.googlecode.iterm2.plist"
-
-sudo_symlinks:
+  hidden: false
+  sudo: false
+- action: symlink
+  files:
+    "bash_profile": "~/.bash_profile"
+  hidden: true
+  sudo: false
+- action: symlink
+  files:
     "~/.motd": "/etc/motd"
+  hidden: false
+  sudo: true
+  absolute: true

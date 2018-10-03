@@ -1,5 +1,12 @@
 {
-    "symlinks": {
-        "*": "~"
-    }
+  "actions": [
+        {
+            "action": "symlink",
+            "files": {
+                "*": "~"
+            },
+            "hidden": true,
+            "sudo": false
+        }
+   ]
 }

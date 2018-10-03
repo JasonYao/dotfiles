@@ -1,5 +1,12 @@
 {
-    "symlinks": {
-        "*": "~/.bin"
-    }
+    "actions": [
+        {
+            "action": "symlink",
+            "files": {
+                "*": "~/.bin"
+            },
+            "hidden": false,
+            "sudo": false
+        }
+   ]
 }

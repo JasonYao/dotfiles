@@ -1,2 +1,12 @@
 Host *
   ServerAliveInterval 60
+
+# Personal Github
+Host github.com
+    HostName github.com
+    IdentityFile ~/.ssh/jason_laptop_2016
+
+# Alt Github
+Host personal
+    HostName github.com
+    IdentityFile ~/.ssh/november
