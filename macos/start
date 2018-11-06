@@ -29,7 +29,7 @@ function fail () {
 # number_of_spaces=3
 
 # See https://stackoverflow.com/a/1482133
-directory_name=$(dirname $(readlink -f $0))
+directory_name=$(dirname $0)
 
 # Checks for OSX defaults
 	if "$directory_name"/setup-defaults ; then
