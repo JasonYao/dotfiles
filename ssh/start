@@ -4,7 +4,7 @@
 # Setup script for SSH settings
 ##
 
-ssh_directory="~/.ssh"
+ssh_directory="$HOME/.ssh"
 
 ##
 # Pretty output functions
