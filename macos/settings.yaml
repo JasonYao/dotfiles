@@ -34,7 +34,6 @@ os:
         - "go"
         - "curl"
         - "webp"
-        - "gradle"
         - "gpg2"
         - "git"
 
