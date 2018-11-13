@@ -51,6 +51,6 @@
 	fi
 
 # Pydotfiles entry-point
-	if [ -f $HOME/.pydotfiles_entry]; then
+	if [ -f $HOME/.pydotfiles_entry ]; then
 		source $HOME/.pydotfiles_entry
 	fi
