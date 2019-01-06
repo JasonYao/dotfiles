@@ -1,4 +1,5 @@
 {
+    "version": "alpha",
     "actions": [
         {
             "action": "symlink",
@@ -9,5 +10,5 @@
             "hidden": false,
             "sudo": false
         }
-   ]
+    ]
 }
