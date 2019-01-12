@@ -65,33 +65,27 @@ os:
         # Marked for deletion
         - "synergy"
         - "skype"
-        # TODO P3: Implement creating a default dock
-    #default_dock:
-    #     - "launchpad"
-    #     - "Notes"
-    #     - "iTunes"
-    #     - "appstore"
-    #     - "systempreferences"
-    #     - "firefox"
+    default_dock:
+        - "launchpad"
+        - "Notes"
+        - "iTunes"
+        - "appstore"
+        - "systempreferences"
+        - "firefox"
 
 actions:
 - action: copy
   files:
     "fonts/FreeMono.ttf": "~/Library/Fonts/FreeMono.ttf"
-  sudo: false
 - action: symlink
   files:
     "com.googlecode.iterm2.plist": "~/Library/Preferences/com.googlecode.iterm2.plist"
-  hidden: false
-  sudo: false
 - action: symlink
   files:
     "bash_profile": "~/.bash_profile"
   hidden: true
-  sudo: false
 - action: symlink
   files:
     "~/.motd": "/etc/motd"
-  hidden: false
   sudo: true
   absolute: true

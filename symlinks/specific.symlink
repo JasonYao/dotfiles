@@ -1,6 +1,0 @@
-# Config for box-specific aliases
-export PATH="/usr/local/opt/imagemagick@6/bin:$PATH"
-export PKG_CONFIG_PATH=/usr/local/opt/imagemagick@6/lib/pkgconfig
-
-# added by travis gem
-[ -f /Users/jason/.travis/travis.sh ] && source /Users/jason/.travis/travis.sh

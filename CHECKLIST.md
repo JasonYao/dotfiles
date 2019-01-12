@@ -33,20 +33,17 @@
 - [ ] Add 3 spaces to mission control
 
 - [ ] Add folders to `finder` sidebar
-	- [ ] current apartment
 	- [ ] torrents
-	- [ ] current job
 
 - [ ] Dev setup
 	- [ ] Install [dotfiles](https://github.com/JasonYao/dotfiles)
-	- [ ] Download Xcode via App Store
 
 - [ ] Download IDEs from [Jetbrains Toolbox](https://www.jetbrains.com/toolbox/)
 	- [ ] IntelliJ IDEA
 	- [ ] CLion
 	- [ ] PyCharm
 	- [ ] WebStorm
-	- [ ] Gogland
+	- [ ] Goland
 
 ## Windows
 - [ ] macOS laptop only
@@ -78,8 +75,8 @@
 	- [ ] Install [Bash subsystem](https://msdn.microsoft.com/en-us/commandline/wsl/install_guide)
 
 - [ ] Games
-	- [ ] Civ V & VI
-	- [ ] Overwatch
-	- [ ] Player Unknown's Battlegrounds
-    - [ ] Starcraft 2
     - [ ] Rainbow 6 Siege
+    - [ ] Player Unknown's Battlegrounds
+	- [ ] Civ V & VI
+	- [ ] Dead by Daylight
+    - [ ] Starcraft 2

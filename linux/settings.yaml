@@ -14,4 +14,3 @@ actions:
       files:
           "profile": "~/.profile"
       hidden: true
-      sudo: false

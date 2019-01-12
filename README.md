@@ -1,33 +1,52 @@
 # Lazy Dotfiles Configuration | Why do work when you can be lazy
 By [Jason Yao](https://github.com/JasonYao/)
 
-This repo contains my own personal implementation of the
-configuration files required to use the [pydotfiles]() library
-for dotfile creation and management, in order to unify my
-own personal experience across all `macOS` and `*nix` systems.
+This repo contains my own personal set of [dotfiles](#TODO),
+in order to unify my own customized experience across all
+`macOS` and `*nix` systems.
 
-For a less opinionated basic example, please see
-the [pydotfiles-configuration-basic]() repo.
+This dotfiles leverages the awesome [pydotfiles](#TODO) utility,
+enabling me to keep large portions of the dotfiles as configuration
+files, instead of bash or python scripts.
+
+For a less opinionated basic repo of a configuration-based set of
+dotfiles that is meant to be easily forked and customized, please
+see the [pydotfiles-basic](#TODO) repo.
+
+## Overview
+![](#TODO-insert-gif-of-going-from-blank-new-computer-to-awesome-new-one)
 
 ## Features
-- Sets sane starting defaults
-
-- Downloads a bunch of useful command-line tools (GNU tools, wget, bash v4+, vim, node, etc.)
-
-- [macOS only] Downloads a bunch of useful applications:
+- Automatically sets my background image
+- Automatically manages my configuration files via symlinks
+- Automatically installs a lot of utilities that I commonly use
+  (e.g. GNU tools, wget, bash v4+, vim, node, etc.)
+- Automatically sets [sane defaults](#TODO), e.g.:
+  - Turns on the firewall, and enables stealth-mode receiving
+  - Turns on a super-high key-repeat rate
+  - Turns on showing the battery percentage
+  - Sets the computer to never sleep unless explicitly told to
+  - Disables Apple's "natural" scrolling (god that thing is so annoying)
+  - Removes all the clutter from my dock, and adds in just the applications
+    that I want on the dock
+  - Enables [dark mode](#TODO) (hurray!)
+  - Sets the default DNS to [Cloudflare's DNS](#TODO)
+  - Removes ISP-level bloatware in the form of browser hijacking via
+    [search domains](#TODO) (seriously, how is this even a thing?!)
+- Automatically installs [a bunch of useful applications](#TODO)
   - [Firefox](https://www.mozilla.org/en-US/firefox/)
   - [smcFanControl](https://www.eidac.de/)
   - [JetBrains Toolbox](https://www.jetbrains.com/toolbox/)
   - [vlc](https://www.videolan.org/vlc/index.html)
   - and everything else that I end up using on a day-to-day basis
-
-- Secures and locks down the system via proper firewalling
-
-- Sets up proper dev environments (Python, Java, Ruby, Golang)
-
-- Sets up proper git environment with a better [diff](https://github.com/so-fancy/diff-so-fancy)
-
-- [macOS only] Adds iTerm 2 [shell integrations](https://www.iterm2.com/documentation-shell-integration.html)
+- Sets up proper dev environment runtimes via environment managers
+  like [jenv](#TODO) for Java, [pyenv](#TODO) for Python, [rbenv](#TODO)
+  for Ruby, and [goenv](#TODO) for Golang
+- Sets up proper git environment with a much prettier [diff](https://github.com/so-fancy/diff-so-fancy)
+- Adds iTerm 2 [shell integrations](https://www.iterm2.com/documentation-shell-integration.html)
+- Enables you to hide/show iTerm as an overlay via a keystroke!
+  (see the [usage](#TODO)) section below
+- And many more!
 
 ## Supported Platforms
 - macOS 10.12.x+ (Sierra+)
@@ -66,7 +85,7 @@ curl -s https://raw.githubusercontent.com/JasonYao/pydotfiles/master/start-base 
 
 - To update + upgrade the dotfiles:
 ```sh
-pydotfiles upgrade
+pydotfiles update
 ```
 
 - To uninstall the dotfiles:
