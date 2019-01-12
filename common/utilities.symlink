@@ -1,10 +1,10 @@
-# Listing commands
+# Listing Commands
 	alias ls='ls --color'
 	alias ll='ls -alFh'
 	alias la='ls -A'
 	alias l='ls -CF'
 
-# Core commands
+# Core Commands
 	alias cp='cp -iv'
 	alias mv='mv -iv'
 	alias mkdir='mkdir -pv'
@@ -12,12 +12,18 @@
 	alias f='open -a Finder ./'                 # f:            Opens current directory in MacOS Finder
 	mcd () { mkdir -p "$1" && cd "$1"; }        # mcd:          Makes new Dir and jumps inside
 
-# Grep commands
+# Session Management Commands
+function title {
+    # Enables setting the title of the current shell
+    echo -ne "\033]0;"$*"\007"
+}
+
+# Grep Commands
 	alias grep='grep --color=auto'
 	alias fgrep='fgrep --color=auto'
 	alias egrep='egrep --color=auto'
 
-# Movement commands
+# Movement Commands
 	alias cd..='cd ../'                         # Go back 1 directory level (for fast typers)
 	alias ..='cd ../'                           # Go back 1 directory level
 	alias ...='cd ../../'                       # Go back 2 directory levels
@@ -30,8 +36,8 @@
 # Quick Access commands
 	alias projects="cd ~/projects"
 
-# Git commands
+# Git Commands
 	alias gsno="git status -uno" # Displays git status without the untracked files
 
-# Displaying commands
+# Displaying Commands
 	alias jpp='python -m json.tool' # JSON pretty print tool, just pipe the json in like: cat test.json | jpp

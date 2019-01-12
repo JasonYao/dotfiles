@@ -6,8 +6,7 @@
             "files": {
                 "*": "~"
             },
-            "hidden": true,
-            "sudo": false
+            "hidden": true
         }
     ]
 }

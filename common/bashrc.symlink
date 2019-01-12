@@ -5,9 +5,9 @@
 		source $HOME/.colour
 	fi
 
-# Implements server aliases
-	if [ -f $HOME/.servers ]; then
-		source $HOME/.servers
+# Implements kubernetes cluster management aliases
+	if [ -f $HOME/.clusters ]; then
+		source $HOME/.clusters
 	fi
 
 # Implements listing aliases
@@ -15,16 +15,12 @@
 		source $HOME/.utilities
 	fi
 
-	if [ -f $HOME/.listing_unix ]; then
-		source $HOME/.listing_unix
-	fi
-
 # Implements box-specific commands for ease (e.g. differing commands on laptop verus desktop)
 	if [ -f $HOME/.specific ]; then
 		source $HOME/.specific
 	fi
 
-# Enables context switching for java & python envs
+# Sets up development language managers and terminal environment configurations
 	if [ -f $HOME/.env ]; then
 		source $HOME/.env
 	fi
@@ -48,9 +44,4 @@
 		# Adds in make's override
 		PATH="/usr/local/opt/make/libexec/gnubin:$PATH"
 		MANPATH="/usr/local/opt/make/libexec/gnuman:$MANPATH"
-	fi
-
-# Pydotfiles entry-point
-	if [ -f $HOME/.pydotfiles_entry ]; then
-		source $HOME/.pydotfiles_entry
 	fi

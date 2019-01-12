@@ -42,7 +42,7 @@ directory_name=$(dirname $0)
     info "Background Image: Checking background image status"
 
     # Note the enclosing single quotes around bash variables when trying to use them in applescripts
-    if osascript -e 'tell application "System Events" to set picture of every desktop to ("'$directory_name'/../img/background1.png" as POSIX file as alias)' ; then
+    if osascript -e 'tell application "System Events" to set picture of every desktop to ("'$directory_name'/../img/background2.png" as POSIX file as alias)' ; then
         success "Background: Desktop image is now correctly set"
     else
         fail "Background: Desktop image failed to be set"

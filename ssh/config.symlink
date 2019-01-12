@@ -9,4 +9,4 @@ Host github.com
 # Alt Github
 Host personal
     HostName github.com
-    IdentityFile ~/.ssh/november
+    IdentityFile ~/.ssh/alt_2019

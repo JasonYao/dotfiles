@@ -6,7 +6,6 @@
             "files": {
                 "*": "~/.bin"
             },
-            "hidden": false,
             "sudo": false
         }
     ]
