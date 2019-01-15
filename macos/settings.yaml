@@ -16,6 +16,7 @@ os:
         - "readline"
         - "diff-so-fancy"
         - "unrar"
+        - "jq"
 
         # These GNU commands normally install with a 'g' prefix
         # in order to avoid name clashing on macos- this flag
