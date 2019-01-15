@@ -340,16 +340,16 @@ success "Battery: Successfully disabled computer/display sleep"
 check_and_set_default "com.apple.dock mru-spaces" 0 "Mission Control: Automatic rearranging spaces has already been disabled" \
 	"-bool false" "Mission Control: Automatic rearranging spaces is now disabled"
 
-# Points DNS to Google's DNS servers
-if [[ $(networksetup -getdnsservers Wi-Fi | grep "8.8.8.8") == "" ]]; then
-    info "DNS: Host's DNS servers do not point at Google, setting DNS servers now"
-		if networksetup -setdnsservers Wi-Fi 8.8.8.8 8.8.4.4 ; then
-			  success "DNS: Successfully set this host's DNS to point to google"
+# Points DNS to Cloudflare's DNS servers. For more information, see https://1.1.1.1/
+if [[ $(networksetup -getdnsservers Wi-Fi | grep "1.1.1.1") == "" ]]; then
+    info "DNS: Host's DNS servers do not point at Cloudflare, setting DNS servers now"
+		if networksetup -setdnsservers Wi-Fi 1.1.1.1 1.0.0.1 2606:4700:4700::1111 2606:4700:4700::1001 ; then
+			  success "DNS: Successfully set this host's DNS to point to Cloudflare"
 		else
-			  fail "DNS: Failed to set this host's DNS to point to google"
+			  fail "DNS: Failed to set this host's DNS to point to Cloudflare"
 		fi
 else
-    success "DNS: Host's DNS servers already point at Google"
+    success "DNS: Host's DNS servers already point at Cloudflare"
 fi
 
 # Sets the search domains to point to a dummy local file because fuck verizon
