@@ -9,3 +9,8 @@
 [core]
 	editor = vim
 	pager = diff-so-fancy | less --tabs=4 -RFX
+[branch]
+    sort = committerdate
+[alias]
+    track = update-index --no-skip-worktree
+    untrack = update-index --skip-worktree
