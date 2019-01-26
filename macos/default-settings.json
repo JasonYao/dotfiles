@@ -1,0 +1,315 @@
+[
+    {
+        "name": "Keyboard: Disabling accent character pop-up",
+        "description": "Disable press-and-hold accent character pop-up in favor of key repeat",
+        "start": "mojave",
+        "check_command": "defaults read -g ApplePressAndHoldEnabled",
+        "expected_check_state": "0",
+        "command": "defaults write -g ApplePressAndHoldEnabled -bool false"
+    },
+    {
+        "name": "Keyboard: 0-delay key repeat",
+        "description": "Sets a blazingly fast key repeat",
+        "start": "mojave",
+        "check_command": "defaults read NSGlobalDomain KeyRepeat",
+        "expected_check_state": "1",
+        "command": "defaults write NSGlobalDomain KeyRepeat -int 1"
+    },
+    {
+        "name": "Keyboard: 0-delay initial key repeat",
+        "description": "Sets a blazingly fast initial key repeat",
+        "start": "mojave",
+        "check_command": "defaults read NSGlobalDomain InitialKeyRepeat",
+        "expected_check_state": "10",
+        "command": "defaults write NSGlobalDomain InitialKeyRepeat -int 10"
+    },
+    {
+        "name": "Finder: Dark mode",
+        "description": "Enables macOS's dark mode",
+        "start": "mojave",
+        "check_command": "osascript -e 'tell app \"System Events\" to tell appearance preferences to get dark mode'",
+        "expected_check_state": "true",
+        "command": "osascript -e 'tell app \"System Events\" to tell appearance preferences to set dark mode to true'"
+    },
+    {
+        "name": "Finder: Shows hard drives on desktop",
+        "description": "Shows all internal hard drives on the desktop",
+        "start": "mojave",
+        "check_command": "defaults read com.apple.finder ShowHardDrivesOnDesktop",
+        "expected_check_state": "1",
+        "command": "defaults write com.apple.finder ShowHardDrivesOnDesktop -bool true"
+    },
+    {
+        "name": "Finder: Shows external hard drives on desktop",
+        "description": "Shows all external hard drives on the desktop",
+        "start": "mojave",
+        "check_command": "defaults read com.apple.finder ShowExternalHardDrivesOnDesktop",
+        "expected_check_state": "1",
+        "command": "defaults write com.apple.finder ShowExternalHardDrivesOnDesktop -bool true"
+    },
+    {
+        "name": "Finder: Shows removable media on desktop",
+        "description": "Shows all removable media drives on the desktop",
+        "start": "mojave",
+        "check_command": "defaults read com.apple.finder ShowRemovableMediaOnDesktop",
+        "expected_check_state": "1",
+        "command": "defaults write com.apple.finder ShowRemovableMediaOnDesktop -bool true"
+    },
+    {
+        "name": "Battery: Shows battery percentage",
+        "description": "Shows the battery percent remaining in the global top-right context menu",
+        "start": "mojave",
+        "check_command": "defaults read com.apple.menuextra.battery ShowPercent",
+        "expected_check_state": "1",
+        "command": "defaults write com.apple.menuextra.battery ShowPercent -bool true"
+    },
+    {
+        "name": "Trackpad: Sets trackpad acceleration",
+        "description": "Sets the trackpad acceleration to a comfortable value (to disable set to -1)",
+        "start": "mojave",
+        "check_command": "defaults read -g com.apple.trackpad.scaling",
+        "expected_check_state": "6",
+        "command": "defaults write -g com.apple.trackpad.scaling -int 6"
+    },
+    {
+        "name": "Trackpad: Disables 'natural' scrolling",
+        "description": "Disables the 'natural' (ha sure in apple's dreams) trackpad scrolling",
+        "start": "mojave",
+        "check_command": "defaults read -g com.apple.swipescrolldirection",
+        "expected_check_state": "0",
+        "command": "defaults write -g com.apple.swipescrolldirection -bool false"
+    },
+    {
+        "name": "Trackpad: Enables App expose gesture",
+        "description": "Enables swiping down with 3 fingers to show all apps side-by-side",
+        "start": "mojave",
+        "check_command": "defaults read com.apple.Dock showAppExposeGestureEnabled",
+        "expected_check_state": "1",
+        "command": "defaults write com.apple.Dock showAppExposeGestureEnabled -bool true",
+        "check_output": false
+    },
+    {
+        "name": "Disk: Disables iCloud default saving location",
+        "description": "Disables saving to iCloud by default for new files",
+        "start": "mojave",
+        "check_command": "defaults read NSGlobalDomain NSDocumentSaveNewDocumentsToCloud",
+        "expected_check_state": "0",
+        "command": "defaults write NSGlobalDomain NSDocumentSaveNewDocumentsToCloud -bool false"
+    },
+    {
+        "name": "Disk: Disables .DS_Store files on network volumes",
+        "description": "Disables writing .DS_Store metadata files on networked volumes",
+        "start": "mojave",
+        "check_command": "defaults read com.apple.desktopservices DSDontWriteNetworkStores",
+        "expected_check_state": "1",
+        "command": "defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true"
+    },
+    {
+        "name": "Dock: Enable autohiding",
+        "description": "Turns on dock autohiding when cursor is not over the dock",
+        "start": "mojave",
+        "check_command": "defaults read com.apple.Dock autohide",
+        "expected_check_state": "1",
+        "command": "defaults write com.apple.Dock autohide -bool true",
+        "post_command": "killall Dock",
+        "check_output": false
+    },
+    {
+        "name": "Dock: Enable application magnification",
+        "description": "Turns on magnification of an application when hovering over it in the dock",
+        "start": "mojave",
+        "check_command": "defaults read com.apple.Dock magnification",
+        "expected_check_state": "1",
+        "command": "defaults write com.apple.Dock magnification -bool true",
+        "post_command": "killall Dock",
+        "check_output": false
+    },
+    {
+        "name": "Dock: Set unmagnified tilesize",
+        "description": "Sets the size of applications in the dock when not magnified",
+        "start": "mojave",
+        "check_command": "defaults read com.apple.Dock tilesize",
+        "expected_check_state": "64",
+        "command": "defaults write com.apple.Dock tilesize -int 64",
+        "post_command": "killall Dock",
+        "check_output": false
+    },
+    {
+        "name": "Dock: Set magnified tilesize",
+        "description": "Sets the size of applications in the dock when magnified",
+        "start": "mojave",
+        "check_command": "defaults read com.apple.Dock largesize",
+        "expected_check_state": "80",
+        "command": "defaults write com.apple.Dock largesize -int 80",
+        "post_command": "killall Dock",
+        "check_output": false
+    },
+    {
+        "name": "Dock: Adds 'recent applications' stack",
+        "description": "Adds an application stack to the Dock showing recently used applications",
+        "start": "mojave",
+        "check_command": "defaults read com.apple.Dock persistent-others | grep recents-tile",
+        "expected_check_state": "\"tile-type\" = \"recents-tile\";",
+        "command": "defaults write com.apple.dock persistent-others -array-add '{\"tile-data\" = {\"list-type\" = 1;}; \"tile-type\" = \"recents-tile\";}'",
+        "post_command": "killall Dock",
+        "check_output": false
+    },
+    {
+        "name": "Dock: Add folder (Applications)",
+        "description": "Adds the application folder to the dock",
+        "start": "mojave",
+        "check_command": "defaults read com.apple.Dock persistent-others | grep '\"file-label\" = Applications;'",
+        "expected_check_state": "\"file-label\" = Applications;",
+        "command": "defaults write com.apple.dock persistent-others -array-add \"<dict><key>tile-data</key><dict><key>file-data</key><dict><key>_CFURLString</key><string>/Applications</string><key>_CFURLStringType</key><integer>0</integer></dict></dict></dict>\"",
+        "post_command": "killall Dock",
+        "check_output": false
+    },
+    {
+        "name": "Dock: Add folder (Torrents)",
+        "description": "Adds the torrents folder to the dock",
+        "start": "mojave",
+        "check_command": "defaults read com.apple.Dock persistent-others | grep '\"file-label\" = torrents;'",
+        "expected_check_state": "\"file-label\" = torrents;",
+        "command": "defaults write com.apple.dock persistent-others -array-add \"<dict><key>tile-data</key><dict><key>file-data</key><dict><key>_CFURLString</key><string>$HOME/torrents</string><key>_CFURLStringType</key><integer>0</integer></dict></dict></dict>\"",
+        "post_command": "killall Dock",
+        "check_output": false
+    },
+    {
+        "name": "Dock: Add folder (Projects)",
+        "description": "Adds the projects folder to the dock",
+        "start": "mojave",
+        "check_command": "defaults read com.apple.Dock persistent-others | grep '\"file-label\" = projects;'",
+        "expected_check_state": "\"file-label\" = projects;",
+        "command": "defaults write com.apple.dock persistent-others -array-add \"<dict><key>tile-data</key><dict><key>file-data</key><dict><key>_CFURLString</key><string>$HOME/projects</string><key>_CFURLStringType</key><integer>0</integer></dict></dict></dict>\"",
+        "post_command": "killall Dock",
+        "check_output": false
+    },
+    {
+        "name": "Dock: Highlight hidden apps",
+        "description": "When an app is hidden from view, highlights the application's dock icon in gray",
+        "start": "mojave",
+        "check_command": "defaults read com.apple.Dock showhidden",
+        "expected_check_state": "1",
+        "command": "defaults write com.apple.Dock showhidden -bool true",
+        "post_command": "killall Dock",
+        "check_output": false
+    },
+    {
+        "name": "Spotlight: Disable external disk indexing",
+        "description": "Disables indexing external disks. To confirm the current status, run `mdutil -a -s`",
+        "start": "mojave",
+        "check_command": "defaults read /Library/Preferences/com.apple.SpotlightServer.plist ExternalVolumesIgnore",
+        "expected_check_state": "1",
+        "command": "defaults write /Library/Preferences/com.apple.SpotlightServer.plist ExternalVolumesIgnore -bool true"
+    },
+    {
+        "name": "Spotlight: Disables indexing & searching of Bootcamp volume",
+        "description": "Disables generating a metadata index of the bootcamp volume for windows",
+        "start": "mojave",
+        "check_command": "mdutil -s /Volumes/BOOTCAMP/ | grep disabled",
+        "expected_check_state": "Indexing and searching disabled.",
+        "command": "mdutil -d /Volumes/BOOTCAMP"
+    },
+    {
+        "name": "Mission Control: Disables automatic re-arranging based on most-recently-used",
+        "description": "Mission control will default to a MRU algorithm, moving the screen. This setting disables that application shuffling.",
+        "start": "mojave",
+        "check_command": "defaults read com.apple.dock mru-spaces",
+        "expected_check_state": "0",
+        "command": "defaults write com.apple.dock mru-spaces -bool false",
+        "check_output": false
+    },
+    {
+        "name": "DNS: Sets up DNS to point to customer DNS resolver",
+        "description": "Utilizes Cloudflare's 1.1.1.1 DNS resolver by default. For more information, see https://1.1.1.1/",
+        "start": "mojave",
+        "check_command": "networksetup -getdnsservers Wi-Fi",
+        "expected_check_state": "1.1.1.1\n1.0.0.1\n2606:4700:4700::1111\n2606:4700:4700::1001",
+        "command": "defaults write networksetup -setdnsservers Wi-Fi 1.1.1.1 1.0.0.1 2606:4700:4700::1111 2606:4700:4700::1001"
+    },
+    {
+        "name": "Network Search: Disables ISP-level 'network search' hijacking",
+        "description": "ISPs like verizon have the ability to resolve to their own 'search page' if a domain is unable to be resolved. This disables 'network search' by pointing to a dummy local file instead",
+        "start": "mojave",
+        "check_command": "networksetup -getsearchdomains Wi-Fi",
+        "expected_check_state": ".local",
+        "command": "networksetup -setsearchdomains Wi-Fi .local"
+    },
+    {
+        "name": "Firewall: Blocks incoming traffic",
+        "description": "Blocks all non-essential incoming connections",
+        "start": "mojave",
+        "check_command": "/usr/libexec/ApplicationFirewall/socketfilterfw --getblockall",
+        "expected_check_state": "Firewall is set to block all non-essential incoming connections",
+        "command": "/usr/libexec/ApplicationFirewall/socketfilterfw --setblockall on"
+    },
+    {
+        "name": "Firewall: Enables stealthmode",
+        "description": "Disables automatically responding to anonymous ping requests",
+        "start": "mojave",
+        "check_command": "/usr/libexec/ApplicationFirewall/socketfilterfw --getstealthmode",
+        "expected_check_state": "Stealth mode enabled",
+        "command": "/usr/libexec/ApplicationFirewall/socketfilterfw --setstealthmode on"
+    },
+    {
+        "name": "Firewall: Enables logging",
+        "description": "Outputs firewall logs to TODO",
+        "start": "mojave",
+        "check_command": "/usr/libexec/ApplicationFirewall/socketfilterfw --getloggingmode",
+        "expected_check_state": "Log mode is on",
+        "command": "/usr/libexec/ApplicationFirewall/socketfilterfw --setloggingmode on"
+    },
+    {
+        "name": "Firewall: Enables the firewall",
+        "description": "Turns on the firewall as a middleware to incoming/exiting traffic",
+        "start": "mojave",
+        "check_command": "/usr/libexec/ApplicationFirewall/socketfilterfw --getglobalstate",
+        "expected_check_state": "Firewall is enabled. (State = 2)",
+        "command": "/usr/libexec/ApplicationFirewall/socketfilterfw --setglobalstate on"
+    },
+    {
+        "name": "Firewall: Enables signed binaries",
+        "description": "Enables execution of signed third-party binaries",
+        "start": "mojave",
+        "check_command": "/usr/libexec/ApplicationFirewall/socketfilterfw --getallowsigned",
+        "expected_check_state": "Automatically allow signed built-in software ENABLED \nAutomatically allow downloaded signed software ENABLED",
+        "command": "/usr/libexec/ApplicationFirewall/socketfilterfw --setallowsigned on"
+    },
+    {
+        "name": "Battery: Disables computer sleeping",
+        "description": "Sets the computer to never go to sleep unless explicitly told",
+        "start": "mojave",
+        "check_command": "systemsetup -getcomputersleep",
+        "expected_check_state": "Computer Sleep: Never",
+        "command": "systemsetup -setcomputersleep Never",
+        "sudo": true
+    },
+    {
+        "name": "Battery: Disables display screen sleeping",
+        "description": "Sets the display screen to never go to sleep unless explicitly told",
+        "start": "mojave",
+        "check_command": "systemsetup -getdisplaysleep",
+        "expected_check_state": "Display Sleep: Never",
+        "command": "systemsetup -setdisplaysleep Never",
+        "sudo": true
+    },
+    {
+        "name": "Guest: Disables local guest account",
+        "description": "Disables the ability to login to the computer as a guest user",
+        "start": "mojave",
+        "check_command": "defaults read /Library/Preferences/com.apple.loginwindow GuestEnabled",
+        "expected_check_state": "0",
+        "command": "defaults write /Library/Preferences/com.apple.loginwindow GuestEnabled -bool false",
+        "sudo": true
+    },
+    {
+        "name": "Bluetooth: Disables bluetooth",
+        "description": "Disables bluetooth by default",
+        "start": "mojave",
+        "check_command": "defaults read /Library/Preferences/com.apple.Bluetooth.plist ControllerPowerState",
+        "expected_check_state": "0",
+        "command": "defaults write /Library/Preferences/com.apple.Bluetooth.plist ControllerPowerState 0",
+        "post_command": "sudo killall bluetoothd",
+        "sudo": true
+    }
+]

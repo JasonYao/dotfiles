@@ -60,19 +60,15 @@ os:
         - "iterm2"
         # Uncommon apps (may be still useful)
         - "filezilla"
-        - "little-snitch"
-        - "micro-snitch"
 
-        # Marked for deletion
-        - "synergy"
-        - "skype"
     default_dock:
-        - "launchpad"
-        - "Notes"
-        - "iTunes"
-        - "appstore"
-        - "systempreferences"
-        - "firefox"
+    - "Launchpad"
+    - "Notes"
+    - "iTunes"
+    - "App Store"
+    - "System Preferences"
+    - "Firefox"
+    default_settings_file: "default-settings.json"
 
 actions:
 - action: copy
