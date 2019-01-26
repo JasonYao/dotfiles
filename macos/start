@@ -4,46 +4,41 @@
 # MacOS-specific setup
 ##
 
-##
-# Pretty output functions
-##
 function info () {
 	printf "\r  [ \033[00;34m..\033[0m ] %s\n" "$1"
 }
+
 function user () {
 	printf "\r  [ \033[0;33m??\033[0m ] %s " "$1"
 }
+
 function success () {
 	printf "\r\033[2K  [ \033[00;32mOK\033[0m ] %s\n" "$1"
 }
+
 function warn () {
 	printf "\r\033[2K  [\033[0;31mWARN\033[0m] %s\n" "$1"
 }
+
 function fail () {
 	printf "\r\033[2K  [\033[0;31mFAIL\033[0m] %s\n" "$1"
 	echo ''
 	exit 1
 }
 
-# TODO P2: Add back in the ability to create a specific number of spaces
-# number_of_spaces=3
+# Sets up useful directories if not already created
+mkdir -p "$HOME/torrents"
+mkdir -p "$HOME/projects"
 
 # See https://stackoverflow.com/a/1482133
 directory_name=$(dirname $0)
 
-# Checks for OSX defaults
-	if "$directory_name"/setup-defaults ; then
-		success "OSX: Sane defaults installed"
-	else
-		fail "OSX: Failed to set sane defaults"
-	fi
-
 # Sets up background images
-    info "Background Image: Checking background image status"
+info "Background Image: Checking background image status"
 
-    # Note the enclosing single quotes around bash variables when trying to use them in applescripts
-    if osascript -e 'tell application "System Events" to set picture of every desktop to ("'$directory_name'/../img/background2.png" as POSIX file as alias)' ; then
-        success "Background: Desktop image is now correctly set"
-    else
-        fail "Background: Desktop image failed to be set"
-    fi
+# Note the enclosing single quotes around bash variables when trying to use them in applescripts
+if osascript -e 'tell application "System Events" to set picture of every desktop to ("'${directory_name}'/../img/background2.png" as POSIX file as alias)' ; then
+    success "Background: Desktop image is now correctly set"
+else
+    fail "Background: Desktop image failed to be set"
+fi
