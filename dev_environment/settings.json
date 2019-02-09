@@ -1,5 +1,6 @@
 {
     "version": "alpha",
+    "schema": "core",
     "environments": [
         {
             "language": "python",

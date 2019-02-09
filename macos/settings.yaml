@@ -1,4 +1,5 @@
 version: "alpha"
+schema: "core"
 os:
     name: "macos"
     shell: "bash"
