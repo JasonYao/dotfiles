@@ -1,25 +1,36 @@
 {
     "version": "alpha",
-    "schema": "core",
+    "schema": "developer_environments",
     "environments": [
         {
             "language": "python",
-            "versions": ["3.7.0", "2.7.15"],
+            "versions": ["3.7.2", "3.6.8", "2.7.15"],
             "environment_manager": {
                 "name": "pyenv",
-                "plugins": ["pyenv-virtualenv"]
-            }
-        },
-        {
-            "language": "ruby",
-            "versions": ["2.4.1"],
-            "environment_manager": {
-                "name": "rbenv"
+                "plugins": [
+                    {
+                        "name": "pyenv-virtualenv",
+                        "virtual_environments": [
+                            {
+                                "version": "3.7.2",
+                                "name": "default-3.7.2"
+                            },
+                            {
+                                "version": "3.6.8",
+                                "name": "default-3.6.8"
+                            },
+                            {
+                                "version": "2.7.15",
+                                "name": "default-2.7.15"
+                            }
+                        ]
+                    }
+                ]
             }
         },
         {
             "language": "java",
-            "versions": ["1.8", "1.11"],
+            "versions": ["8", "latest"],
             "environment_manager": {
                 "name": "jenv"
             }
