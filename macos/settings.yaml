@@ -4,41 +4,50 @@ os:
     name: "macos"
     shell: "bash"
     packages:
-        - "coreutils"
-        - "wget"
-        - "autoconf"
-        - "automake"
-        - "make"
-        - "nano"
-        - "openssl"
-        - "mmv"
-        - "cmake"
+        # Utilities
         - "bash"
-        - "readline"
-        - "diff-so-fancy"
-        - "unrar"
+        - "git"
+        - "openssl"
+        - "wget"
+        - "curl"
         - "jq"
+        - "tmux"
+        - "tree"
+        - "mmv"
+        - "unrar"
+        - "nmap"
+        - "webp"
 
-        # These GNU commands normally install with a 'g' prefix
-        # in order to avoid name clashing on macos- this flag
-        # will remove that, and just install it with the same name
-        - "grep --with-default-names"
-        - "gnu-tar --with-default-names"
-        - "gnu-sed --with-default-names"
+        # Editors
+        - "vim"
+        - "nano"
 
+        # Plugins
+        - "diff-so-fancy"
+
+        # GNU Utilities
+        - "coreutils"
+        - "findutils"
+        - "grep"
+        - "gnu-tar"
+        - "gnu-sed"
         - "gawk"
         - "gzip"
-        - "shellcheck"
-        - "vim"
-        - "node"
-        - "tree"
-        - "nmap"
-        - "tmux"
-        - "go"
-        - "curl"
-        - "webp"
         - "gpg2"
-        - "git"
+
+        # Linters
+        - "shellcheck"
+
+        # Build Systems
+        - "automake"
+        - "make"
+        - "cmake"
+
+        # Language Runtimes (might be able to be moved into pydotfiles)
+        # - "node"  # Not something I normally need
+
+        # - name: "gradle"
+        #  dependency: "java"
 
         # For Jekyll blog
         - "imagemagick@6"
