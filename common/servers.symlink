@@ -1,0 +1,12 @@
+alias pihole='ssh -l jason -p 30000 192.168.1.80'
+alias la-pihole='ssh -l jason -p 30000 192.168.0.182'
+
+# Control
+alias kubeA='ssh -l jason -p 30000 192.168.1.92'
+
+# Workers
+alias kubeB='ssh -l jason -p 30000 192.168.1.90'
+alias kubeC='ssh -l jason -p 30000 192.168.1.87'
+alias kubeD='ssh -l jason -p 30000 192.168.1.91'
+alias kubeE='ssh -l jason -p 30000 192.168.1.89'
+alias kubeF='ssh -l jason -p 30000 192.168.1.88'

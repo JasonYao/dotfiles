@@ -41,3 +41,8 @@ function title {
 
 # Displaying Commands
 	alias jpp='python -m json.tool' # JSON pretty print tool, just pipe the json in like: cat test.json | jpp
+
+# URL commands
+    alias urldecode='python3 -c "import sys, urllib.parse as ul; print(ul.unquote_plus(sys.argv[1]))"'
+    alias urlencode='python3 -c "import sys, urllib.parse as ul; print (ul.quote_plus(sys.argv[1]))"'
+

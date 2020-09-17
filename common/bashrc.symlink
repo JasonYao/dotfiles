@@ -10,6 +10,11 @@
 		source $HOME/.clusters
 	fi
 
+# Implements direct SSH listing
+	if [ -f $HOME/.servers ]; then
+		source $HOME/.servers
+	fi
+
 # Implements listing aliases
 	if [ -f $HOME/.utilities ]; then
 		source $HOME/.utilities
