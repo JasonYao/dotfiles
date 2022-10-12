@@ -1,0 +1,40 @@
+version: "alpha"
+schema: "core"
+os:
+    name: "macos"
+    shell: "bash"
+    packages:
+        # For Jekyll blog
+        - "imagemagick@6"
+    applications:
+        # Common apps
+        - "protonvpn"
+        - "flux"
+        - "atom"
+        - "jetbrains-toolbox"
+        - "google-chrome"
+        - "firefox"
+        - "vlc"
+        - "qbittorrent"
+
+        - "mactex" # Note: installation takes a looong time
+        - "texmaker"
+        - "discord"
+        - "java"
+
+        - "iterm2"
+        - "signal"
+        # Uncommon apps (may be still useful)
+        #- "filezilla"
+
+    default_dock:
+    - "Launchpad"
+    - "Notes"
+    - "iTunes"
+    - "App Store"
+    - "System Preferences"
+    - "Firefox"
+    - "ProtonVPN"
+    - "Discord"
+    default_settings_file: "default-settings.json"
+profile: "personal"

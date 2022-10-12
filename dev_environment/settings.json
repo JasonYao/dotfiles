@@ -35,5 +35,6 @@
                 "name": "jenv"
             }
         }
-    ]
+    ],
+    "profile": "dev"
 }

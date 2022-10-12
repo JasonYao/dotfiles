@@ -9,5 +9,6 @@
                 "authorized_keys": "~/.ssh/authorized_keys"
             }
         }
-    ]
+    ],
+    "profile": "personal"
 }

@@ -1,0 +1,13 @@
+version: "alpha"
+schema: "core"
+os:
+    name: "macos"
+    shell: "bash"
+    default_dock:
+    - "Launchpad"
+    - "Notes"
+    - "App Store"
+    - "System Preferences"
+    - "Firefox"
+    - "Google Chrome"
+profile: "work"

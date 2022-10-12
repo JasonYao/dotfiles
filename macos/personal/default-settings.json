@@ -1,0 +1,135 @@
+{
+    "version": "alpha",
+    "schema": "default_settings",
+    "default_settings": [
+        {
+            "name": "Dock: Add folder (Torrents)",
+            "description": "Adds the torrents folder to the dock",
+            "start": "mojave",
+            "check_command": "defaults read com.apple.Dock persistent-others | grep '\"file-label\" = torrents;'",
+            "expected_check_state": "\"file-label\" = torrents;",
+            "command": "defaults write com.apple.dock persistent-others -array-add \"<dict><key>tile-data</key><dict><key>file-data</key><dict><key>_CFURLString</key><string>$HOME/torrents</string><key>_CFURLStringType</key><integer>0</integer></dict></dict></dict>\"",
+            "post_command": "killall Dock",
+            "check_output": false
+        },
+        {
+            "name": "Dock: Add folder (Projects)",
+            "description": "Adds the projects folder to the dock",
+            "start": "mojave",
+            "check_command": "defaults read com.apple.Dock persistent-others | grep '\"file-label\" = projects;'",
+            "expected_check_state": "\"file-label\" = projects;",
+            "command": "defaults write com.apple.dock persistent-others -array-add \"<dict><key>tile-data</key><dict><key>file-data</key><dict><key>_CFURLString</key><string>$HOME/projects</string><key>_CFURLStringType</key><integer>0</integer></dict></dict></dict>\"",
+            "post_command": "killall Dock",
+            "check_output": false
+        },
+        {
+            "name": "Spotlight: Disable external disk indexing",
+            "description": "Disables indexing external disks. To confirm the current status, run `mdutil -a -s`",
+            "start": "mojave",
+            "check_command": "defaults read /Library/Preferences/com.apple.SpotlightServer.plist ExternalVolumesIgnore",
+            "expected_check_state": "1",
+            "command": "defaults write /Library/Preferences/com.apple.SpotlightServer.plist ExternalVolumesIgnore -bool true"
+        },
+        {
+            "name": "Spotlight: Disables indexing & searching of Bootcamp volume",
+            "description": "Disables generating a metadata index of the bootcamp volume for windows",
+            "start": "mojave",
+            "check_command": "mdutil -s /Volumes/BOOTCAMP/ | grep disabled",
+            "expected_check_state": "Indexing and searching disabled.",
+            "command": "mdutil -d /Volumes/BOOTCAMP"
+        },
+        {
+            "name": "DNS: Sets up DNS to point to customer DNS resolver",
+            "description": "Utilizes Cloudflare's 1.1.1.1 DNS resolver by default. For more information, see https://1.1.1.1/",
+            "start": "mojave",
+            "check_command": "networksetup -getdnsservers Wi-Fi",
+            "expected_check_state": "1.1.1.1\n1.0.0.1\n2606:4700:4700::1111\n2606:4700:4700::1001",
+            "command": "defaults write networksetup -setdnsservers Wi-Fi 1.1.1.1 1.0.0.1 2606:4700:4700::1111 2606:4700:4700::1001"
+        },
+        {
+            "name": "Network Search: Disables ISP-level 'network search' hijacking",
+            "description": "ISPs like verizon have the ability to resolve to their own 'search page' if a domain is unable to be resolved. This disables 'network search' by pointing to a dummy local file instead",
+            "start": "mojave",
+            "check_command": "networksetup -getsearchdomains Wi-Fi",
+            "expected_check_state": ".local",
+            "command": "networksetup -setsearchdomains Wi-Fi .local"
+        },
+        {
+            "name": "Firewall: Blocks incoming traffic",
+            "description": "Blocks all non-essential incoming connections",
+            "start": "mojave",
+            "check_command": "/usr/libexec/ApplicationFirewall/socketfilterfw --getblockall",
+            "expected_check_state": "Firewall is set to block all non-essential incoming connections",
+            "command": "/usr/libexec/ApplicationFirewall/socketfilterfw --setblockall on"
+        },
+        {
+            "name": "Firewall: Enables stealthmode",
+            "description": "Disables automatically responding to anonymous ping requests",
+            "start": "mojave",
+            "check_command": "/usr/libexec/ApplicationFirewall/socketfilterfw --getstealthmode",
+            "expected_check_state": "Stealth mode enabled",
+            "command": "/usr/libexec/ApplicationFirewall/socketfilterfw --setstealthmode on"
+        },
+        {
+            "name": "Firewall: Enables logging",
+            "description": "Outputs firewall logs to TODO",
+            "start": "mojave",
+            "check_command": "/usr/libexec/ApplicationFirewall/socketfilterfw --getloggingmode",
+            "expected_check_state": "Log mode is on",
+            "command": "/usr/libexec/ApplicationFirewall/socketfilterfw --setloggingmode on"
+        },
+        {
+            "name": "Firewall: Enables the firewall",
+            "description": "Turns on the firewall as a middleware to incoming/exiting traffic",
+            "start": "mojave",
+            "check_command": "/usr/libexec/ApplicationFirewall/socketfilterfw --getglobalstate",
+            "expected_check_state": "Firewall is enabled. (State = 2)",
+            "command": "/usr/libexec/ApplicationFirewall/socketfilterfw --setglobalstate on"
+        },
+        {
+            "name": "Firewall: Enables signed binaries",
+            "description": "Enables execution of signed third-party binaries",
+            "start": "mojave",
+            "check_command": "/usr/libexec/ApplicationFirewall/socketfilterfw --getallowsigned",
+            "expected_check_state": "Automatically allow signed built-in software ENABLED \nAutomatically allow downloaded signed software ENABLED",
+            "command": "/usr/libexec/ApplicationFirewall/socketfilterfw --setallowsigned on"
+        },
+        {
+            "name": "Battery: Disables computer sleeping",
+            "description": "Sets the computer to never go to sleep unless explicitly told",
+            "start": "mojave",
+            "check_command": "systemsetup -getcomputersleep",
+            "expected_check_state": "Computer Sleep: Never",
+            "command": "systemsetup -setcomputersleep Never",
+            "sudo": true
+        },
+        {
+            "name": "Battery: Disables display screen sleeping",
+            "description": "Sets the display screen to never go to sleep unless explicitly told",
+            "start": "mojave",
+            "check_command": "systemsetup -getdisplaysleep",
+            "expected_check_state": "Display Sleep: Never",
+            "command": "systemsetup -setdisplaysleep Never",
+            "sudo": true
+        },
+        {
+            "name": "Guest: Disables local guest account",
+            "description": "Disables the ability to login to the computer as a guest user",
+            "start": "mojave",
+            "check_command": "defaults read /Library/Preferences/com.apple.loginwindow GuestEnabled",
+            "expected_check_state": "0",
+            "command": "defaults write /Library/Preferences/com.apple.loginwindow GuestEnabled -bool false",
+            "sudo": true
+        },
+        {
+            "name": "Bluetooth: Disables bluetooth",
+            "description": "Disables bluetooth by default",
+            "start": "mojave",
+            "check_command": "defaults read /Library/Preferences/com.apple.Bluetooth.plist ControllerPowerState",
+            "expected_check_state": "0",
+            "command": "defaults write /Library/Preferences/com.apple.Bluetooth.plist ControllerPowerState 0",
+            "post_command": "sudo killall bluetoothd",
+            "sudo": true
+        }
+    ]
+}
