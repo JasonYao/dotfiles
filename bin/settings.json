@@ -9,5 +9,6 @@
             },
             "sudo": false
         }
-    ]
+    ],
+    "profile": "core"
 }

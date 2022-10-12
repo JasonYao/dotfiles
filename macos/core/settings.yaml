@@ -48,39 +48,8 @@ os:
 
         # - name: "gradle"
         #  dependency: "java"
-
-        # For Jekyll blog
-        - "imagemagick@6"
-    applications:
-        # Common apps
-        - "protonvpn"
-        - "flux"
-        - "atom"
-        - "jetbrains-toolbox"
-        - "google-chrome"
-        - "firefox"
-        - "vlc"
-        - "qbittorrent"
-
-        - "mactex" # Note: installation takes a looong time
-        - "texmaker"
-        - "discord"
-        - "java"
-
-        - "iterm2"
-		- "signal"
-        # Uncommon apps (may be still useful)
-        - "filezilla"
-
-    default_dock:
-    - "Launchpad"
-    - "Notes"
-    - "iTunes"
-    - "App Store"
-    - "System Preferences"
-    - "Firefox"
     default_settings_file: "default-settings.json"
-
+profile: "core"
 actions:
 - action: copy
   files:
