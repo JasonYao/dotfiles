@@ -36,5 +36,6 @@ os:
     - "Firefox"
     - "ProtonVPN"
     - "Discord"
-    default_settings_file: "default-settings.json"
+    default_settings_files:
+      - "default-settings-personal.json"
 profile: "personal"

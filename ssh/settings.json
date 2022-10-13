@@ -3,10 +3,16 @@
     "schema": "core",
     "actions": [
         {
+            "action": "script",
+            "files": {
+                "init": "~/.ssh/init"
+            }
+        },
+        {
             "action": "symlink",
             "files": {
-                "config": "~/.ssh/config",
-                "authorized_keys": "~/.ssh/authorized_keys"
+                "config.symlink": "~/.ssh/config",
+                "authorized_keys.symlink": "~/.ssh/authorized_keys"
             }
         }
     ],

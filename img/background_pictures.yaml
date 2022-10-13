@@ -1,0 +1,15 @@
+version: "alpha"
+schema: "core"
+os:
+    name: "macos"
+    shell: "bash"
+actions:
+    - action: copy
+      files:
+          "*": "~/.background_images"
+      hidden: false
+    - action: script
+      files:
+          "set_background": ""
+      hidden: false
+profile: "core"

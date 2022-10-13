@@ -1,0 +1,10 @@
+version: "alpha"
+schema: "manifest"
+profiles:
+  work:
+    - core
+    - work
+  personal:
+    - core
+    - dev
+    - personal

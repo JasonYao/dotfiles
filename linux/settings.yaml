@@ -13,6 +13,6 @@ os:
 actions:
     - action: symlink
       files:
-          "profile": "~/.profile"
+          "profile.symlink": "~/.profile"
       hidden: true
 profile: "core"
