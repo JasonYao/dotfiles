@@ -10,13 +10,4 @@ os:
         - git                   # Used in general project upkeep
         - unzip                 # Used with dealing with cached dotfile files
         - build-essential       # Used in pre-compiling rbenv
-
-actions:
-    - action: symlink
-      files:
-          "profile.symlink": "~/.profile"
-      hidden: true
-    - action: script
-      files:
-          "setup_diff_so_fancy": "_"
-profile: "core"
+profile: "personal"
