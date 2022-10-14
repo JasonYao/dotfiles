@@ -3,6 +3,7 @@ schema: "core"
 os:
     name: "linux"
     shell: "bash"
+    package_manager: "apt"
     packages:
         # Common dependencies
         - wget                  # Used in general downloading
@@ -15,4 +16,7 @@ actions:
       files:
           "profile.symlink": "~/.profile"
       hidden: true
+    - action: script
+      files:
+          "setup_diff_so_fancy": "_"
 profile: "core"

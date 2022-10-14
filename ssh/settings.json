@@ -5,7 +5,7 @@
         {
             "action": "script",
             "files": {
-                "init": "~/.ssh/init"
+                "setup_ssh_directory": "_"
             }
         },
         {

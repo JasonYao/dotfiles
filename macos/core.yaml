@@ -3,6 +3,7 @@ schema: "core"
 os:
     name: "macos"
     shell: "bash"
+    package_manager: "brew"
     packages:
         # Utilities
         - "bash"

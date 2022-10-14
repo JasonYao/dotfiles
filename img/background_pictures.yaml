@@ -10,6 +10,6 @@ actions:
       hidden: false
     - action: script
       files:
-          "set_background": ""
+          "set_background": "_"
       hidden: false
 profile: "core"

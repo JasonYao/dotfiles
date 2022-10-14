@@ -1,6 +1,13 @@
 {
     "version": "alpha",
     "schema": "core",
-    "actions": [],
+    "actions": [
+        {
+            "action": "script",
+            "files": {
+                "setup_nanorc": "_"
+            }
+        }
+    ],
     "profile": "core"
 }
