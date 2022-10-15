@@ -3,6 +3,7 @@ schema: "core"
 os:
     name: "macos"
     shell: "bash"
+    package_manager: "brew"
     packages:
         # For Jekyll blog
         - "imagemagick@6"
@@ -36,5 +37,10 @@ os:
     - "Firefox"
     - "ProtonVPN"
     - "Discord"
-    default_settings_file: "default-settings.json"
+    default_settings_files:
+      - "default-settings-personal.json"
 profile: "personal"
+actions:
+- action: script
+  files:
+    "setup_personal_backgrounds": "_"

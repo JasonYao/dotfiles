@@ -1,0 +1,14 @@
+version: "alpha"
+schema: "core"
+os:
+    name: "linux"
+    shell: "bash"
+actions:
+    - action: symlink
+      files:
+          "profile.symlink": "~/.profile"
+      hidden: true
+    - action: script
+      files:
+          "setup_diff_so_fancy": "_"
+profile: "core"

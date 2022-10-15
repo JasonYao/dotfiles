@@ -3,16 +3,11 @@ schema: "core"
 os:
     name: "linux"
     shell: "bash"
+    package_manager: "apt"
     packages:
         # Common dependencies
         - wget                  # Used in general downloading
         - git                   # Used in general project upkeep
         - unzip                 # Used with dealing with cached dotfile files
         - build-essential       # Used in pre-compiling rbenv
-
-actions:
-    - action: symlink
-      files:
-          "profile": "~/.profile"
-      hidden: true
-profile: "core"
+profile: "personal"

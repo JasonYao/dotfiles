@@ -4,7 +4,7 @@
     "environments": [
         {
             "language": "python",
-            "versions": ["3.7.2", "3.6.8", "2.7.15"],
+            "versions": ["3.10.6", "3.8.13", "2.7.18"],
             "environment_manager": {
                 "name": "pyenv",
                 "plugins": [
@@ -12,16 +12,16 @@
                         "name": "pyenv-virtualenv",
                         "virtual_environments": [
                             {
-                                "version": "3.7.2",
-                                "name": "default-3.7.2"
+                                "version": "3.10.6",
+                                "name": "default-3.10.6"
                             },
                             {
-                                "version": "3.6.8",
-                                "name": "default-3.6.8"
+                                "version": "3.8.13",
+                                "name": "default-3.8.13"
                             },
                             {
-                                "version": "2.7.15",
-                                "name": "default-2.7.15"
+                                "version": "2.7.18",
+                                "name": "default-2.7.18"
                             }
                         ]
                     }

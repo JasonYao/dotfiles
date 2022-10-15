@@ -1,7 +1,0 @@
-#!/usr/bin/env bash
-
-##
-# Script to setup my custom bin
-##
-
-mkdir -p ~/.bin
