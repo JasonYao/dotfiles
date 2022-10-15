@@ -6,7 +6,7 @@ os:
     package_manager: "brew"
     packages:
         # For Jekyll blog
-        - "imagemagick@6"
+        - "imagemagick"
     applications:
         # Common apps
         - "protonvpn"
@@ -21,7 +21,6 @@ os:
         - "mactex" # Note: installation takes a looong time
         - "texmaker"
         - "discord"
-        - "java"
 
         - "iterm2"
         - "signal"

@@ -1,16 +1,19 @@
 # This is Git's per-user configuration file.
 [user]
-	name = Jason Yao
-	email = Hello@JasonYao.com
+    name = Jason Yao
+    email = Hello@JasonYao.com
 [push]
-	default = simple
+    default = simple
 [color]
-	ui = auto
+    ui = auto
 [core]
-	editor = vim
-	pager = diff-so-fancy | less --tabs=4 -RFX
+    editor = vim
+    pager = diff-so-fancy | less --tabs=4 -RFX
 [branch]
     sort = committerdate
 [alias]
     track = update-index --no-skip-worktree
     untrack = update-index --skip-worktree
+[interactive]
+    diffFilter = diff-so-fancy --patch
+
