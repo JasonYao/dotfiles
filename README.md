@@ -1,5 +1,29 @@
-# Lazy Dotfiles Configuration | Why do work when you can be lazy
+# Lazy dotfiles configuration
 
+## tl;dr
+Run these commands based on the OS and desired profile:
+
+```sh
+##
+# For the curl command:
+# -L signifies to follow redirects (required to download from github
+# -o dictates what the output file will be called
+##
+
+# MacOS personal
+mkdir -p ~/.dotfiles && curl -L -o ~/.dotfiles/dotfiles.zip https://github.com/JasonYao/dotfiles/releases/download/v1.0.0/dotfiles-macos-personal.zip && cd ~/.dotfiles && unzip dotfiles.zip && bash install.sh
+
+# MacOS work
+mkdir -p ~/.dotfiles && curl -L -o ~/.dotfiles/dotfiles.zip https://github.com/JasonYao/dotfiles/releases/download/v1.0.0/dotfiles-macos-work.zip && cd ~/.dotfiles && unzip dotfiles.zip && bash install.sh
+
+# Linux personal
+mkdir -p ~/.dotfiles && curl -L -o ~/.dotfiles/dotfiles.zip https://github.com/JasonYao/dotfiles/releases/download/v1.0.0/dotfiles-linux-personal.zip && cd ~/.dotfiles && unzip dotfiles.zip && bash install.sh
+
+# Linux work
+mkdir -p ~/.dotfiles && curl -L -o ~/.dotfiles/dotfiles.zip https://github.com/JasonYao/dotfiles/releases/download/v1.0.0/dotfiles-linux-work.zip && cd ~/.dotfiles && unzip dotfiles.zip && bash install.sh
+```
+
+## Overview
 This repo contains my own personal set of [dotfiles](https://dotfiles.github.io/),
 in order to unify my own customized experience across all
 `macOS` and `*nix` systems.
@@ -47,46 +71,9 @@ see the [pydotfiles-basic](https://github.com/JasonYao/pydotfiles-basic/) repo.
 - macOS 10.12.x+ (Sierra+)
 - Ubuntu 16.04 LTS
 
-# Installation
-### [RECOMMENDED] Opinionated Bootstrap
-The following one-liner will bootstrap the system to an opinionated
-setup, in particular setting up [pyenv](https://github.com/pyenv/pyenv)
-for you if you don't have it yet, and setting up a new laptop-wide global
-python environment for day-to-day use.
-
-**`Basically, if there's a completely new computer, run this:`**
-
-```sh
-curl -s https://raw.githubusercontent.com/JasonYao/pydotfiles/master/start-opinionated | bash -s {CONFIGURATION_REPO_GIT_LINK}
-# e.g.
-curl -s https://raw.githubusercontent.com/JasonYao/pydotfiles/master/start-opinionated | bash -s git@github.com:JasonYao/dotfiles.git
-```
-
-### Non-Opinionated Bootstrap
-The following one-liner won't assume the python environment that you're
-installing this to, and just install itself with `pip`.
-
-**`Basically, if your computer already has the required python version/environments, run this:`**
-
-```sh
-curl -s https://raw.githubusercontent.com/JasonYao/pydotfiles/master/start-base | bash -s {CONFIGURATION_REPO_GIT_LINK}
-# e.g.
-curl -s https://raw.githubusercontent.com/JasonYao/pydotfiles/master/start-base | bash -s git@github.com:JasonYao/dotfiles.git
-```
-
 ## Usage
 - To toggle showing/hiding of iTerm 2:
 <kbd>⌘</kbd> + <kbd>↓</kbd>
-
-- To update + upgrade the dotfiles:
-```sh
-pydotfiles update
-```
-
-- To uninstall the dotfiles:
-```sh
-pydotfiles uninstall
-```
 
 ## License
 This repo is licensed under the terms of the
