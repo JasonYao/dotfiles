@@ -1,5 +1,12 @@
 # Changelog | Dotfiles
 
+# [1.1.0](https://github.com/JasonYao/dotfiles/compare/v1.0.0...v1.1.0) (2022-10-17)
+
+
+### Features
+
+* **default-settings:** disables smart quotes and smart dashes for MacOS ([e0be461](https://github.com/JasonYao/dotfiles/commit/e0be4614152f6bbf94d5ed85c437097ae5426603)), closes [#46](https://github.com/JasonYao/dotfiles/issues/46)
+
 # 1.0.0 (2022-10-17)
 
 
