@@ -1,5 +1,12 @@
 # Changelog | Dotfiles
 
+## [1.1.2](https://github.com/JasonYao/dotfiles/compare/v1.1.1...v1.1.2) (2022-10-17)
+
+
+### Bug Fixes
+
+* **dns:** disables default DNS setting for now to avoid script error ([0d84116](https://github.com/JasonYao/dotfiles/commit/0d84116859adf53d3bf3477117ef442825192629))
+
 ## [1.1.1](https://github.com/JasonYao/dotfiles/compare/v1.1.0...v1.1.1) (2022-10-17)
 
 
