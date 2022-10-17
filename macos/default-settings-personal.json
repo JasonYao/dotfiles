@@ -44,7 +44,8 @@
             "start": "mojave",
             "check_command": "networksetup -getdnsservers Wi-Fi",
             "expected_check_state": "1.1.1.1\n1.0.0.1\n2606:4700:4700::1111\n2606:4700:4700::1001",
-            "command": "defaults write networksetup -setdnsservers Wi-Fi 1.1.1.1 1.0.0.1 2606:4700:4700::1111 2606:4700:4700::1001"
+            "command": "defaults write networksetup -setdnsservers Wi-Fi 1.1.1.1 1.0.0.1 2606:4700:4700::1111 2606:4700:4700::1001",
+            "enabled": false
         },
         {
             "name": "Network Search: Disables ISP-level 'network search' hijacking",
