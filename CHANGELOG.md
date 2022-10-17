@@ -1,5 +1,12 @@
 # Changelog | Dotfiles
 
+## [1.1.1](https://github.com/JasonYao/dotfiles/compare/v1.1.0...v1.1.1) (2022-10-17)
+
+
+### Bug Fixes
+
+* **macos:** fixes global macos disabling of smart quotes ([03c5345](https://github.com/JasonYao/dotfiles/commit/03c5345d91043339657ee634e9be7a43f275f88f))
+
 # [1.1.0](https://github.com/JasonYao/dotfiles/compare/v1.0.0...v1.1.0) (2022-10-17)
 
 
