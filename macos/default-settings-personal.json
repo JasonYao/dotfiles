@@ -131,6 +131,14 @@
             "command": "defaults write /Library/Preferences/com.apple.Bluetooth.plist ControllerPowerState 0",
             "post_command": "sudo killall bluetoothd",
             "sudo": true
+        },
+        {
+            "name": "Shell: Sets the default shell to be Bash",
+            "description": "MacOS sets the default shell to be zsh starting in Catalina, so we set it back",
+            "start": "catalina",
+            "check_command": "echo $SHELL",
+            "expected_check_state": "/bin/bash",
+            "command": "chsh -s /bin/bash"
         }
     ]
 }
