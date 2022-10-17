@@ -1,0 +1,61 @@
+#!/usr/bin/env bash
+
+# Fails on the first error
+set -e
+
+current_release_version_number="$(cat VERSION)"
+
+new_release_version_number=$1
+if [[ ${new_release_version_number} == v* ]]; then  # True if $new_release_version_number starts with 'v'
+    # Strips out the starting 'v'
+    new_release_version_number=${new_release_version_number#"v"}
+fi
+
+##
+# Pretty output functions
+##
+
+function info () {
+    printf "\\t  [\\033[00;34mINFO\\033[0m] %s\\n" "${1}"
+}
+
+function user () {
+    printf "\\t  [ \\033[0;33m??\\033[0m ] %s\\n" "${1}"
+}
+
+function success () {
+    printf "\\t\\033[2K  [ \\033[00;32mOK\\033[0m ] %s\\n" "${1}"
+}
+
+function warn () {
+    printf "\\t\\033[2K  [\\033[38:2:255:165:0mWARN\\033[0m] %s\\n" "${1}"
+}
+
+function fail () {
+    printf "\\t\\033[2K  [\\033[0;31mFAIL\\033[0m] %s\\n" "${1}"
+}
+
+# Updates the package version number
+info "Release: Updating version number [current_version=${current_release_version_number}, new_version=\"${new_release_version_number}\"]"
+if echo "${new_release_version_number}" > VERSION ; then
+    success "Release: Successfully updated the version number [current_version=${current_release_version_number}, new_version=\"${new_release_version_number}\"]"
+else
+    fail "Release: Failed to update the version number [current_version=${current_release_version_number}, new_version=\"${new_release_version_number}\"]"
+    exit 1
+fi
+
+# Generates a release build (zipped up build packages)
+if pydotfiles build --release; then
+    success "Build: Successfully generated all build packages"
+else
+    fail "Build: Failed to generate all build packages"
+    exit 1
+fi
+
+# Updates the README file to the latest version
+if sed -i "s/${current_release_version_number}/${new_release_version_number}/" README.md ; then
+    success "Instructions update: Successfully updated the README instructions to the latest version number"
+else
+    fail "Instructions update: Failed to update the README instructions to the latest version number"
+    exit 1
+fi

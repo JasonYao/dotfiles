@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+
+# Fails on the first error
+set -e
+
+##
+# Installs required dependencies
+##
+
+pip3 install --upgrade pip
+pip3 install pydotfiles
+
+# Automatic semantic release plugin
+npm install -g semantic-release               \
+    @semantic-release/changelog               \
+    @semantic-release/commit-analyzer         \
+    @semantic-release/exec                    \
+    @semantic-release/git                     \
+    @semantic-release/release-notes-generator
