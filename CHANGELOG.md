@@ -1,5 +1,12 @@
 # Changelog | Dotfiles
 
+# [1.2.0](https://github.com/JasonYao/dotfiles/compare/v1.1.2...v1.2.0) (2022-10-17)
+
+
+### Features
+
+* **shell:** sets default shell for macos personal to be bash instead of zsh ([18a73d5](https://github.com/JasonYao/dotfiles/commit/18a73d531c5801b8dd3eb9a31d9696facf2fa930))
+
 ## [1.1.2](https://github.com/JasonYao/dotfiles/compare/v1.1.1...v1.1.2) (2022-10-17)
 
 
