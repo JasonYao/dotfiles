@@ -185,6 +185,42 @@
             "expected_check_state": "0",
             "command": "defaults write com.apple.dock mru-spaces -bool false",
             "check_output": false
+        },
+        {
+            "name": "Smart quotes: Disables using smart quotes globally",
+            "description": "MacOS is dumb and auto converts normal quotes into 'smart quotes', this config disables it",
+            "start": "mojave",
+            "check_command": "defaults read NSGlobalDomain NSAutomaticQuoteSubstitutionEnabled",
+            "expected_check_state": "0",
+            "command": "defaults writes NSGlobalDomain NSAutomaticQuoteSubstitutionEnabled -bool false",
+            "check_output": false
+        },
+        {
+            "name": "Smart quotes: Disables smart quotes for TextEdit",
+            "description": "TextEdit has their own configs regarding smart quotes that'll need to be disabled",
+            "start": "mojave",
+            "check_command": "defaults read com.apple.TextEdit SmartQuotes",
+            "expected_check_state": "0",
+            "command": "defaults write com.apple.TextEdit SmartQuotes -bool false",
+            "check_output": false
+        },
+        {
+            "name": "Smart dashes: Disables using smart dashes globally",
+            "description": "MacOS is dumb and auto converts double dashes to a 'smart dash' (—), this config disables it",
+            "start": "mojave",
+            "check_command": "defaults read NSGlobalDomain NSAutomaticDashSubstitutionEnabled",
+            "expected_check_state": "0",
+            "command": "defaults write NSGlobalDomain NSAutomaticDashSubstitutionEnabled -bool false",
+            "check_output": false
+        },
+        {
+            "name": "Smart dashes: Disables smart dashes for TextEdit",
+            "description": "TextEdit has their own configs regarding smart dashes that'll need to be disabled",
+            "start": "mojave",
+            "check_command": "defaults read com.apple.TextEdit SmartDashes",
+            "expected_check_state": "0",
+            "command": "defaults write com.apple.TextEdit SmartDashes -bool false",
+            "check_output": false
         }
     ]
 }
