@@ -192,7 +192,7 @@
             "start": "mojave",
             "check_command": "defaults read NSGlobalDomain NSAutomaticQuoteSubstitutionEnabled",
             "expected_check_state": "0",
-            "command": "defaults writes NSGlobalDomain NSAutomaticQuoteSubstitutionEnabled -bool false",
+            "command": "defaults write NSGlobalDomain NSAutomaticQuoteSubstitutionEnabled -bool false",
             "check_output": false
         },
         {
