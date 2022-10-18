@@ -30,7 +30,7 @@ os:
     default_dock:
     - "Launchpad"
     - "Notes"
-    - "iTunes"
+    - "Music"
     - "App Store"
     - "System Preferences"
     - "Firefox"

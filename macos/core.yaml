@@ -33,7 +33,7 @@ os:
         - "gnu-sed"
         - "gawk"
         - "gzip"
-        - "gpg2"
+        - "gpg"  # This will technically install gpg2+ and link it to gpg
 
         # Linters
         - "shellcheck"
