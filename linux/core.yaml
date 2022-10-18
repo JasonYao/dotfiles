@@ -6,9 +6,10 @@ os:
 actions:
     - action: symlink
       files:
-          "profile.symlink": "~/.profile"
+        "profile.symlink": "~/.profile"
+        "inputrc.symlink": "~/.inputrc"
       hidden: true
     - action: script
       files:
-          "setup_diff_so_fancy": "_"
+        "setup_diff_so_fancy": "_"
 profile: "core"

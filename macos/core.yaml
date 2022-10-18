@@ -61,6 +61,7 @@ actions:
 - action: symlink
   files:
     "bash_profile.symlink": "~/.bash_profile"
+    "inputrc.symlink": "~/.inputrc"
   hidden: true
 - action: symlink
   files:

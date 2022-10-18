@@ -1,0 +1,14 @@
+###
+# This file contains configuration overrides for readline,
+# which dictate behavior in the shell such as auto completion behavior
+##
+
+# Load system defaults from whatever system that we're on
+$include /etc/inputrc
+
+# Ignores case when doing auto completion
+set completion-ignore-case On
+
+# Only lists the auto-completions instead of ringing the bell when
+#the completing word has more than one possible completion
+set show-all-if-ambiguous on
