@@ -11,16 +11,16 @@ Run these commands based on the OS and desired profile:
 ##
 
 # MacOS personal
-mkdir -p ~/.dotfiles && curl -L -o ~/.dotfiles/dotfiles.zip https://github.com/JasonYao/dotfiles/releases/download/v1.2.0/dotfiles-macos-personal.zip && cd ~/.dotfiles && unzip dotfiles.zip && bash install.sh
+mkdir -p ~/.dotfiles && curl -L -o ~/.dotfiles/dotfiles.zip https://github.com/JasonYao/dotfiles/releases/download/v1.3.0/dotfiles-macos-personal.zip && cd ~/.dotfiles && unzip dotfiles.zip && bash install.sh
 
 # MacOS work
-mkdir -p ~/.dotfiles && curl -L -o ~/.dotfiles/dotfiles.zip https://github.com/JasonYao/dotfiles/releases/download/v1.2.0/dotfiles-macos-work.zip && cd ~/.dotfiles && unzip dotfiles.zip && bash install.sh
+mkdir -p ~/.dotfiles && curl -L -o ~/.dotfiles/dotfiles.zip https://github.com/JasonYao/dotfiles/releases/download/v1.3.0/dotfiles-macos-work.zip && cd ~/.dotfiles && unzip dotfiles.zip && bash install.sh
 
 # Linux personal
-mkdir -p ~/.dotfiles && curl -L -o ~/.dotfiles/dotfiles.zip https://github.com/JasonYao/dotfiles/releases/download/v1.2.0/dotfiles-linux-personal.zip && cd ~/.dotfiles && unzip dotfiles.zip && bash install.sh
+mkdir -p ~/.dotfiles && curl -L -o ~/.dotfiles/dotfiles.zip https://github.com/JasonYao/dotfiles/releases/download/v1.3.0/dotfiles-linux-personal.zip && cd ~/.dotfiles && unzip dotfiles.zip && bash install.sh
 
 # Linux work
-mkdir -p ~/.dotfiles && curl -L -o ~/.dotfiles/dotfiles.zip https://github.com/JasonYao/dotfiles/releases/download/v1.2.0/dotfiles-linux-work.zip && cd ~/.dotfiles && unzip dotfiles.zip && bash install.sh
+mkdir -p ~/.dotfiles && curl -L -o ~/.dotfiles/dotfiles.zip https://github.com/JasonYao/dotfiles/releases/download/v1.3.0/dotfiles-linux-work.zip && cd ~/.dotfiles && unzip dotfiles.zip && bash install.sh
 ```
 
 ## Overview
@@ -50,7 +50,7 @@ see the [pydotfiles-basic](https://github.com/JasonYao/pydotfiles-basic/) repo.
   - Removes all the clutter from my dock, and adds in just the applications
     that I want on the dock
   - Enables [dark mode](https://support.apple.com/en-us/HT208976) (hurray!)
-  - Sets the default DNS to [Cloudflare's DNS](https://1.2.0.1/)
+  - Sets the default DNS to [Cloudflare's DNS](https://1.3.0.1/)
   - Removes ISP-level bloatware in the form of browser hijacking via
     [search domains](https://www.theregister.com/2007/11/08/verizon_highjacks_web_browsers_on_fios/) (seriously, how is this even a thing?)
 - Automatically installs a bunch of useful applications like:

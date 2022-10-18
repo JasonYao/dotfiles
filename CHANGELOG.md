@@ -1,5 +1,12 @@
 # Changelog | Dotfiles
 
+# [1.3.0](https://github.com/JasonYao/dotfiles/compare/v1.2.0...v1.3.0) (2022-10-18)
+
+
+### Features
+
+* **readline:** updates shell auto completion options to not ring bell when ambiguous ([f126ec5](https://github.com/JasonYao/dotfiles/commit/f126ec5fd2cc0f7e077e25b0783379eba9bf1a7c)), closes [#15](https://github.com/JasonYao/dotfiles/issues/15)
+
 # [1.2.0](https://github.com/JasonYao/dotfiles/compare/v1.1.2...v1.2.0) (2022-10-17)
 
 
