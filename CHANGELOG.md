@@ -1,5 +1,12 @@
 # Changelog | Dotfiles
 
+# [1.4.0](https://github.com/JasonYao/dotfiles/compare/v1.3.0...v1.4.0) (2022-10-18)
+
+
+### Features
+
+* **homebrew:** disables analytics from homebrew package manager ([a5b2fe0](https://github.com/JasonYao/dotfiles/commit/a5b2fe0d4e5ac2b9ab42f9f5dd9f9de3ab200839)), closes [#33](https://github.com/JasonYao/dotfiles/issues/33)
+
 # [1.3.0](https://github.com/JasonYao/dotfiles/compare/v1.2.0...v1.3.0) (2022-10-18)
 
 
