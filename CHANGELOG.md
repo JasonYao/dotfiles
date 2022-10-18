@@ -1,5 +1,12 @@
 # Changelog | Dotfiles
 
+## [1.4.2](https://github.com/JasonYao/dotfiles/compare/v1.4.1...v1.4.2) (2022-10-18)
+
+
+### Bug Fixes
+
+* **vim:** makes vim colorscheme less of an eyesore ([d14b751](https://github.com/JasonYao/dotfiles/commit/d14b751c005ea39a9339f7157002c73af8ca8e75)), closes [#61](https://github.com/JasonYao/dotfiles/issues/61)
+
 ## [1.4.1](https://github.com/JasonYao/dotfiles/compare/v1.4.0...v1.4.1) (2022-10-18)
 
 
