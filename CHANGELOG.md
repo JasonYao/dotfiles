@@ -1,5 +1,13 @@
 # Changelog | Dotfiles
 
+## [1.4.1](https://github.com/JasonYao/dotfiles/compare/v1.4.0...v1.4.1) (2022-10-18)
+
+
+### Bug Fixes
+
+* **default-settings:** fixes default settings so that its idempotent ([774b563](https://github.com/JasonYao/dotfiles/commit/774b56320188fa3049bd810cc2d13a3266b8223a))
+* **default-settings:** fixes the dock folder add idempotency issue and re-added in read checks ([7da904b](https://github.com/JasonYao/dotfiles/commit/7da904bf4f252d68a310a723f8b8e35ee5c109fa)), closes [#59](https://github.com/JasonYao/dotfiles/issues/59)
+
 # [1.4.0](https://github.com/JasonYao/dotfiles/compare/v1.3.0...v1.4.0) (2022-10-18)
 
 
