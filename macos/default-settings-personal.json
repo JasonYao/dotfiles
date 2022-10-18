@@ -6,21 +6,19 @@
             "name": "Dock: Add folder (Torrents)",
             "description": "Adds the torrents folder to the dock",
             "start": "mojave",
-            "check_command": "defaults read com.apple.Dock persistent-others | grep '\"file-label\" = torrents;'",
-            "expected_check_state": "\"file-label\" = torrents;",
+            "check_command": "defaults read com.apple.Dock persistent-others | grep ' torrents' | xargs",
+            "expected_check_state": "file-label = torrents;",
             "command": "defaults write com.apple.dock persistent-others -array-add \"<dict><key>tile-data</key><dict><key>file-data</key><dict><key>_CFURLString</key><string>$HOME/torrents</string><key>_CFURLStringType</key><integer>0</integer></dict></dict></dict>\"",
-            "post_command": "killall Dock",
-            "check_output": false
+            "post_command": "killall Dock"
         },
         {
             "name": "Dock: Add folder (Projects)",
             "description": "Adds the projects folder to the dock",
             "start": "mojave",
-            "check_command": "defaults read com.apple.Dock persistent-others | grep '\"file-label\" = projects;'",
-            "expected_check_state": "\"file-label\" = projects;",
+            "check_command": "defaults read com.apple.Dock persistent-others | grep ' projects' | xargs",
+            "expected_check_state": "file-label = projects;",
             "command": "defaults write com.apple.dock persistent-others -array-add \"<dict><key>tile-data</key><dict><key>file-data</key><dict><key>_CFURLString</key><string>$HOME/projects</string><key>_CFURLStringType</key><integer>0</integer></dict></dict></dict>\"",
-            "post_command": "killall Dock",
-            "check_output": false
+            "post_command": "killall Dock"
         },
         {
             "name": "Spotlight: Disable external disk indexing",

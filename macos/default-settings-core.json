@@ -88,8 +88,7 @@
             "start": "mojave",
             "check_command": "defaults read com.apple.Dock showAppExposeGestureEnabled",
             "expected_check_state": "1",
-            "command": "defaults write com.apple.Dock showAppExposeGestureEnabled -bool true",
-            "check_output": false
+            "command": "defaults write com.apple.Dock showAppExposeGestureEnabled -bool true"
         },
         {
             "name": "Disk: Disables iCloud default saving location",
@@ -114,8 +113,7 @@
             "check_command": "defaults read com.apple.Dock autohide",
             "expected_check_state": "1",
             "command": "defaults write com.apple.Dock autohide -bool true",
-            "post_command": "killall Dock",
-            "check_output": false
+            "post_command": "killall Dock"
         },
         {
             "name": "Dock: Enable application magnification",
@@ -124,8 +122,7 @@
             "check_command": "defaults read com.apple.Dock magnification",
             "expected_check_state": "1",
             "command": "defaults write com.apple.Dock magnification -bool true",
-            "post_command": "killall Dock",
-            "check_output": false
+            "post_command": "killall Dock"
         },
         {
             "name": "Dock: Set unmagnified tilesize",
@@ -134,8 +131,7 @@
             "check_command": "defaults read com.apple.Dock tilesize",
             "expected_check_state": "64",
             "command": "defaults write com.apple.Dock tilesize -int 64",
-            "post_command": "killall Dock",
-            "check_output": false
+            "post_command": "killall Dock"
         },
         {
             "name": "Dock: Set magnified tilesize",
@@ -144,28 +140,35 @@
             "check_command": "defaults read com.apple.Dock largesize",
             "expected_check_state": "80",
             "command": "defaults write com.apple.Dock largesize -int 80",
-            "post_command": "killall Dock",
-            "check_output": false
+            "post_command": "killall Dock"
+        },
+        {
+            "name": "DEPRECATED: Dock: Adds 'recent applications' stack",
+            "description": "Adds an application stack to the Dock showing recently used applications",
+            "start": "mojave",
+            "end": "catalina",
+            "check_command": "defaults read com.apple.Dock persistent-others | grep recents-tile",
+            "expected_check_state": "\"tile-type\" = \"recents-tile\";",
+            "command": "defaults write com.apple.dock persistent-others -array-add '{\"tile-data\" = {\"list-type\" = 1;}; \"tile-type\" = \"recents-tile\";}'",
+            "post_command": "killall Dock"
         },
         {
             "name": "Dock: Adds 'recent applications' stack",
             "description": "Adds an application stack to the Dock showing recently used applications",
-            "start": "mojave",
-            "check_command": "defaults read com.apple.Dock persistent-others | grep recents-tile",
-            "expected_check_state": "\"tile-type\" = \"recents-tile\";",
-            "command": "defaults write com.apple.dock persistent-others -array-add '{\"tile-data\" = {\"list-type\" = 1;}; \"tile-type\" = \"recents-tile\";}'",
-            "post_command": "killall Dock",
-            "check_output": false
+            "start": "big_sur",
+            "check_command": "defaults read com.apple.dock \"show-recents\"",
+            "expected_check_state": "1",
+            "command": "defaults write com.apple.dock \"show-recents\" -bool \"true\"",
+            "post_command": "killall Dock"
         },
         {
             "name": "Dock: Add folder (Applications)",
             "description": "Adds the application folder to the dock",
             "start": "mojave",
-            "check_command": "defaults read com.apple.Dock persistent-others | grep '\"file-label\" = Applications;'",
-            "expected_check_state": "\"file-label\" = Applications;",
+            "check_command": "defaults read com.apple.Dock persistent-others | grep 'file:///Applications/' | xargs",
+            "expected_check_state": "_CFURLString = file:///Applications/;",
             "command": "defaults write com.apple.dock persistent-others -array-add \"<dict><key>tile-data</key><dict><key>file-data</key><dict><key>_CFURLString</key><string>/Applications</string><key>_CFURLStringType</key><integer>0</integer></dict></dict></dict>\"",
-            "post_command": "killall Dock",
-            "check_output": false
+            "post_command": "killall Dock"
         },
         {
             "name": "Dock: Highlight hidden apps",
@@ -174,8 +177,7 @@
             "check_command": "defaults read com.apple.Dock showhidden",
             "expected_check_state": "1",
             "command": "defaults write com.apple.Dock showhidden -bool true",
-            "post_command": "killall Dock",
-            "check_output": false
+            "post_command": "killall Dock"
         },
         {
             "name": "Mission Control: Disables automatic re-arranging based on most-recently-used",
@@ -183,8 +185,7 @@
             "start": "mojave",
             "check_command": "defaults read com.apple.dock mru-spaces",
             "expected_check_state": "0",
-            "command": "defaults write com.apple.dock mru-spaces -bool false",
-            "check_output": false
+            "command": "defaults write com.apple.dock mru-spaces -bool false"
         },
         {
             "name": "Smart quotes: Disables using smart quotes globally",
@@ -192,8 +193,7 @@
             "start": "mojave",
             "check_command": "defaults read NSGlobalDomain NSAutomaticQuoteSubstitutionEnabled",
             "expected_check_state": "0",
-            "command": "defaults write NSGlobalDomain NSAutomaticQuoteSubstitutionEnabled -bool false",
-            "check_output": false
+            "command": "defaults write NSGlobalDomain NSAutomaticQuoteSubstitutionEnabled -bool false"
         },
         {
             "name": "Smart quotes: Disables smart quotes for TextEdit",
@@ -201,8 +201,7 @@
             "start": "mojave",
             "check_command": "defaults read com.apple.TextEdit SmartQuotes",
             "expected_check_state": "0",
-            "command": "defaults write com.apple.TextEdit SmartQuotes -bool false",
-            "check_output": false
+            "command": "defaults write com.apple.TextEdit SmartQuotes -bool false"
         },
         {
             "name": "Smart dashes: Disables using smart dashes globally",
@@ -210,8 +209,7 @@
             "start": "mojave",
             "check_command": "defaults read NSGlobalDomain NSAutomaticDashSubstitutionEnabled",
             "expected_check_state": "0",
-            "command": "defaults write NSGlobalDomain NSAutomaticDashSubstitutionEnabled -bool false",
-            "check_output": false
+            "command": "defaults write NSGlobalDomain NSAutomaticDashSubstitutionEnabled -bool false"
         },
         {
             "name": "Smart dashes: Disables smart dashes for TextEdit",
@@ -219,8 +217,7 @@
             "start": "mojave",
             "check_command": "defaults read com.apple.TextEdit SmartDashes",
             "expected_check_state": "0",
-            "command": "defaults write com.apple.TextEdit SmartDashes -bool false",
-            "check_output": false
+            "command": "defaults write com.apple.TextEdit SmartDashes -bool false"
         },
         {
             "name": "Homebrew: Disable analytics",
