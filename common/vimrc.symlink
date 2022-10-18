@@ -14,7 +14,7 @@ set nocompatible
 syntax enable
 
 " Sets the colour scheme
-colorscheme delek
+colorscheme murphy
 
 " Set automatic indentation
 set autoindent
