@@ -221,6 +221,14 @@
             "expected_check_state": "0",
             "command": "defaults write com.apple.TextEdit SmartDashes -bool false",
             "check_output": false
+        },
+        {
+            "name": "Homebrew: Disable analytics",
+            "description": "Homebrew added in analytics (https://docs.brew.sh/Analytics) that are turned on by default, so we disable that setting",
+            "start": "mojave",
+            "check_command": "brew analytics state",
+            "expected_check_state": "Analytics are disabled.",
+            "command": "brew analytics off"
         }
     ]
 }
