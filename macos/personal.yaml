@@ -28,18 +28,22 @@ os:
         #- "filezilla"
 
     default_dock:
-    - "Launchpad"
-    - "Notes"
-    - "Music"
-    - "App Store"
-    - "System Preferences"
-    - "Firefox"
-    - "ProtonVPN"
-    - "Discord"
+        - "Launchpad"
+        - "Notes"
+        - "Music"
+        - "App Store"
+        - "System Preferences"
+        - "Firefox"
+        - "ProtonVPN"
+        - "Discord"
     default_settings_files:
-      - "default-settings-personal.json"
+        - "default-settings-personal.json"
 profile: "personal"
 actions:
-- action: script
-  files:
-    "setup_personal_backgrounds": "_"
+    - action: script
+      files:
+          "setup_personal_backgrounds": "_"
+    - action: symlink
+      files:
+          "pydotfiles_profile_personal.symlink": "~/.pydotfiles_profile"
+      hidden: true

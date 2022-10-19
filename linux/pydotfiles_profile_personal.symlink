@@ -1,0 +1,21 @@
+# Shell configurations
+
+# Sets up development language managers and terminal environment configurations
+if [ -f $HOME/.env ]; then
+    source $HOME/.env
+fi
+
+# Implements kubernetes cluster management aliases
+if [ -f $HOME/.clusters ]; then
+    source $HOME/.clusters
+fi
+
+# Implements direct SSH listing
+if [ -f $HOME/.servers ]; then
+    source $HOME/.servers
+fi
+
+# Linux only
+cat ~/.motd # Sets up MotD
+eval `ssh-agent` > /dev/null && echo "SSH agent enabled" # Starts the ssh agent
+PATH="$HOME/.fancy:$PATH"

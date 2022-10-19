@@ -1,0 +1,30 @@
+# Shell configurations
+
+# Sets up development language managers and terminal environment configurations
+if [ -f $HOME/.env ]; then
+    source $HOME/.env
+fi
+
+# Implements kubernetes cluster management aliases
+if [ -f $HOME/.clusters ]; then
+    source $HOME/.clusters
+fi
+
+# Implements direct SSH listing
+if [ -f $HOME/.servers ]; then
+    source $HOME/.servers
+fi
+
+# Utilizes GNU utilities over the baked in ones
+PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
+
+# Adds in the man pages for GNU utilities instead of
+# the man pages for the built-in utilities provided by apple
+alias man='_() { echo $1; man -M $(brew --prefix)/opt/coreutils/libexec/gnuman $1 1>/dev/null 2>&1;  if [ "$?" -eq 0 ]; then man -M $(brew --prefix)/opt/coreutils/libexec/gnuman $1; else man $1; fi }; _'
+
+PATH="/usr/local/opt/findutils/libexec/gnubin:$PATH"
+PATH="/usr/local/opt/grep/libexec/gnubin:$PATH"
+PATH="/usr/local/opt/gnu-tar/libexec/gnubin:$PATH"
+PATH="/usr/local/opt/gnu-sed/libexec/gnubin:$PATH"
+PATH="/usr/local/opt/curl/bin:$PATH"
+PATH="/usr/local/opt/make/libexec/gnubin:$PATH"

@@ -49,22 +49,23 @@ os:
         # - name: "gradle"
         #  dependency: "java"
     default_settings_files:
-      - "default-settings-core.json"
+        - "default-settings-core.json"
 profile: "core"
 actions:
-- action: copy
-  files:
-    "fonts/FreeMono.ttf": "~/Library/Fonts/FreeMono.ttf"
-- action: symlink
-  files:
-    "com.googlecode.iterm2.plist.symlink": "~/Library/Preferences/com.googlecode.iterm2.plist"
-- action: symlink
-  files:
-    "bash_profile.symlink": "~/.bash_profile"
-    "inputrc.symlink": "~/.inputrc"
-  hidden: true
-- action: symlink
-  files:
-    "~/.motd": "/etc/motd"
-  sudo: true
-  absolute: true
+    - action: copy
+      files:
+          "fonts/FreeMono.ttf": "~/Library/Fonts/FreeMono.ttf"
+# Disabled until I swap to a config version instead of blob
+#    - action: symlink
+#      files:
+#          "com.googlecode.iterm2.plist.symlink": "~/Library/Preferences/com.googlecode.iterm2.plist"
+    - action: symlink
+      files:
+          "bash_profile.symlink": "~/.bash_profile"
+          "inputrc.symlink": "~/.inputrc"
+      hidden: true
+    - action: symlink
+      files:
+          "~/.motd": "/etc/motd"
+      sudo: true
+      absolute: true
