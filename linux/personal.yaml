@@ -15,4 +15,5 @@ actions:
     - action: symlink
       files:
           "pydotfiles_profile_personal.symlink": "~/.pydotfiles_profile"
+          "env.symlink": "~/.env"
       hidden: true

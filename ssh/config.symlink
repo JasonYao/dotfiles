@@ -1,5 +1,5 @@
 Host *
-  ServerAliveInterval 60
+    ServerAliveInterval 60
 
 # Personal Github
 Host github.com

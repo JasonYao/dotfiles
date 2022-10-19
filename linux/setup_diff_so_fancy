@@ -8,37 +8,37 @@
 # Pretty output functions
 ##
 function info () {
-	printf "\r  [ \033[00;34m..\033[0m ] %s\n" "$1"
+    printf "\r  [ \033[00;34m..\033[0m ] %s\n" "$1"
 }
 function user () {
-	printf "\r  [ \033[0;33m??\033[0m ] %s " "$1"
+    printf "\r  [ \033[0;33m??\033[0m ] %s " "$1"
 }
 function success () {
-	printf "\r\033[2K  [ \033[00;32mOK\033[0m ] %s\n" "$1"
+    printf "\r\033[2K  [ \033[00;32mOK\033[0m ] %s\n" "$1"
 }
 function warn () {
-	printf "\r\033[2K  [\033[0;31mWARN\033[0m] %s\n" "$1"
+    printf "\r\033[2K  [\033[0;31mWARN\033[0m] %s\n" "$1"
 }
 function fail () {
-	printf "\r\033[2K  [\033[0;31mFAIL\033[0m] %s\n" "$1"
-	echo ''
-	exit 1
+    printf "\r\033[2K  [\033[0;31mFAIL\033[0m] %s\n" "$1"
+    echo ''
+    exit 1
 }
 
 # Setup nice diffing for git
-    export PATH="$HOME/.fancy:$PATH"
-	if [[ $(which diff-so-fancy) == "" ]]; then
-		info "Fancy Diff: Package was not found, downloading now"
-		if git clone https://github.com/so-fancy/diff-so-fancy.git "$HOME"/.fancy &> /dev/null ; then
-			success "Fancy Diff: Package is now installed"
-		else
-			fail "Fancy Diff: Package failed to install"
-		fi
-	else
-		success "Fancy Diff: Package is already installed, updating now"
-		if git -C "$HOME"/.fancy pull &> /dev/null ; then
-			success "Fancy Diff: Package is now updated"
-		else
-			warn "Fancy Diff: Package failed to update"
-		fi
-	fi
+export PATH="$HOME/.fancy:$PATH"
+if [[ $(which diff-so-fancy) == "" ]]; then
+    info "Fancy Diff: Package was not found, downloading now"
+    if git clone https://github.com/so-fancy/diff-so-fancy.git "$HOME"/.fancy &> /dev/null ; then
+        success "Fancy Diff: Package is now installed"
+    else
+        fail "Fancy Diff: Package failed to install"
+    fi
+else
+    success "Fancy Diff: Package is already installed, updating now"
+    if git -C "$HOME"/.fancy pull &> /dev/null ; then
+        success "Fancy Diff: Package is now updated"
+    else
+        warn "Fancy Diff: Package failed to update"
+    fi
+fi

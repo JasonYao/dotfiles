@@ -1,3 +1,4 @@
+# SSH access to home servers
 alias pihole='ssh -l jason -p 30000 192.168.1.80'
 alias la-pihole='ssh -l jason -p 30000 192.168.0.182'
 

@@ -1,16 +1,16 @@
 # Listing Commands
-	alias ls='ls --color'
-	alias ll='ls -alFh'
-	alias la='ls -A'
-	alias l='ls -CF'
+alias ls='ls --color'
+alias ll='ls -alFh'
+alias la='ls -A'
+alias l='ls -CF'
 
 # Core Commands
-	alias cp='cp -iv'
-	alias mv='mv -iv'
-	alias mkdir='mkdir -pv'
-	cd() { builtin cd "$@"; ls; }               # Always list directory contents upon 'cd'
-	alias f='open -a Finder ./'                 # f:            Opens current directory in MacOS Finder
-	mcd () { mkdir -p "$1" && cd "$1"; }        # mcd:          Makes new Dir and jumps inside
+alias cp='cp -iv'
+alias mv='mv -iv'
+alias mkdir='mkdir -pv'
+cd() { builtin cd "$@"; ls; }               # Always list directory contents upon 'cd'
+alias f='open -a Finder ./'                 # f:            Opens current directory in MacOS Finder
+mcd () { mkdir -p "$1" && cd "$1"; }        # mcd:          Makes new Dir and jumps inside
 
 # Session Management Commands
 function title {
@@ -19,31 +19,30 @@ function title {
 }
 
 # Grep Commands
-	alias grep='grep --color=auto'
-	alias fgrep='fgrep --color=auto'
-	alias egrep='egrep --color=auto'
+alias grep='grep --color=auto'
+alias fgrep='fgrep --color=auto'
+alias egrep='egrep --color=auto'
 
 # Movement Commands
-	alias cd..='cd ../'                         # Go back 1 directory level (for fast typers)
-	alias ..='cd ../'                           # Go back 1 directory level
-	alias ...='cd ../../'                       # Go back 2 directory levels
-	alias .3='cd ../../../'                     # Go back 3 directory levels
-	alias .4='cd ../../../../'                  # Go back 4 directory levels
-	alias .5='cd ../../../../../'               # Go back 5 directory levels
-	alias .6='cd ../../../../../../'            # Go back 6 directory levels
-	alias ~="cd ~"                              # ~:            Go Home
+alias cd..='cd ../'                         # Go back 1 directory level (for fast typers)
+alias ..='cd ../'                           # Go back 1 directory level
+alias ...='cd ../../'                       # Go back 2 directory levels
+alias .3='cd ../../../'                     # Go back 3 directory levels
+alias .4='cd ../../../../'                  # Go back 4 directory levels
+alias .5='cd ../../../../../'               # Go back 5 directory levels
+alias .6='cd ../../../../../../'            # Go back 6 directory levels
+alias ~="cd ~"                              # ~:            Go Home
 
 # Quick Access commands
-	alias projects="cd ~/projects"
+alias projects="cd ~/projects"
 
 # Git Commands
-	alias gsno="git status -uno" # Displays git status without the untracked files
+alias gsno="git status -uno" # Displays git status without the untracked files
 
 # Displaying Commands
-	alias jpp='python -m json.tool' # JSON pretty print tool, just pipe the json in like: cat test.json | jpp
-	alias xmlpp="xmllint --format $1 | pygmentize -O encoding=UTF-8 -l xml"
+alias jpp='python -m json.tool' # JSON pretty print tool, just pipe the json in like: cat test.json | jpp
+alias xmlpp="xmllint --format $1 | pygmentize -O encoding=UTF-8 -l xml"
 
 # URL commands
-    alias urldecode='python3 -c "import sys, urllib.parse as ul; print(ul.unquote_plus(sys.argv[1]))"'
-    alias urlencode='python3 -c "import sys, urllib.parse as ul; print (ul.quote_plus(sys.argv[1]))"'
-
+alias urldecode='python3 -c "import sys, urllib.parse as ul; print(ul.unquote_plus(sys.argv[1]))"'
+alias urlencode='python3 -c "import sys, urllib.parse as ul; print (ul.quote_plus(sys.argv[1]))"'
