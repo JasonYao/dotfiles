@@ -150,8 +150,8 @@
             "description": "MacOS sets the default shell to be zsh starting in Catalina, so we set it back",
             "start": "catalina",
             "check_command": "echo $SHELL",
-            "expected_check_state": "/usr/local/bin/bash",
-            "command": "chsh -s /usr/local/bin/bash"
+            "expected_check_state": "/bin/bash",
+            "command": "chsh -s /bin/bash"
         }
     ]
 }
