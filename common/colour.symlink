@@ -1,7 +1,81 @@
 # Colour output activation
 COLOR_BOLD="[\e[1m]"
 COLOR_DEFAULT="[\e[0m]"
-PS1="$COLOR_BOLD\u@\h \W \$ $COLOR_DEFAULT"
+
+# PS1 controls how the commandline prompt looks like, and can be as simple as
+# a static message showing <HOSTNAME><USER>$, all the way to dynamically changing
+# symbols and colors as changes are made in source control.
+#
+# Two versions are here for easy commenting/uncommenting
+
+# Version 1: No additional requirements, and has a red/white theme with static
+# host and user info
+#PS1="$COLOR_BOLD\u@\h \W \$ $COLOR_DEFAULT"
+
+# Version 2: A modified version of https://gist.github.com/justintv/168835?permalink_comment_id=3554316#gistcomment-3554316
+# which contains a powerline, showing what the current directory is, and changes in source control repos
+
+# prompt
+FMT_BOLD="\[\e[1m\]"
+FMT_DIM="\[\e[2m\]"
+FMT_RESET="\[\e[0m\]"
+FMT_UNBOLD="\[\e[22m\]"
+FMT_UNDIM="\[\e[22m\]"
+FG_BLACK="\[\e[30m\]"
+FG_BLUE="\[\e[34m\]"
+FG_CYAN="\[\e[36m\]"
+FG_GREEN="\[\e[32m\]"
+FG_GREY="\[\e[37m\]"
+FG_MAGENTA="\[\e[35m\]"
+FG_RED="\[\e[31m\]"
+FG_WHITE="\[\e[97m\]"
+BG_BLACK="\[\e[40m\]"
+BG_BLUE="\[\e[44m\]"
+BG_CYAN="\[\e[46m\]"
+BG_GREEN="\[\e[42m\]"
+BG_MAGENTA="\[\e[45m\]"
+BG_RED="\[\e[41m\]"
+
+parse_git_bg() {
+	[[ $(git status -s 2> /dev/null) ]] && echo -e "\e[43m" || echo -e "\e[42m"
+}
+
+parse_git_fg() {
+	[[ $(git status -s 2> /dev/null) ]] && echo -e "\e[33m" || echo -e "\e[32m"
+}
+
+PS1="\n${FG_BLUE}╭─" # begin arrow to prompt
+PS1+="${FG_MAGENTA}" # begin USERNAME container
+
+# Adds the OS icon or a default
+if [ "Darwin" = "$(uname)" ]; then
+    PS1+="${BG_MAGENTA}${FG_CYAN}${FMT_BOLD}  "
+else
+    # We don't know what OS we're on so we just default to linux here
+    PS1+="${BG_MAGENTA}${FG_CYAN}${FMT_BOLD}  "
+fi
+
+PS1+="${FG_WHITE}\u" # print username
+PS1+="${FMT_UNBOLD} ${FG_MAGENTA}${BG_BLUE} " # end USERNAME container / begin DIRECTORY container
+PS1+="${FG_GREY}\w " # print directory
+PS1+="${FG_BLUE}${BG_CYAN} " # end DIRECTORY container / begin FILES container
+
+# Files listing count (maybe remove if there's no files in the directory?
+PS1+="${FG_BLACK}"
+PS1+=" \$(find . -mindepth 1 -maxdepth 1 -type d | wc -l) " # print number of folders
+PS1+=" \$(find . -mindepth 1 -maxdepth 1 -type f | wc -l) " # print number of files
+PS1+=" \$(find . -mindepth 1 -maxdepth 1 -type l | wc -l) " # print number of symlinks
+PS1+="${FMT_RESET}${FG_CYAN}"
+
+# Git branch checking
+PS1+="\$(git branch 2> /dev/null | grep '^*' | colrm 1 2 | xargs -I BRANCH echo -n \"" # check if git branch exists
+PS1+="${BG_GREEN} " # end FILES container / begin BRANCH container
+PS1+="${FG_BLACK} BRANCH " # print current git branch
+PS1+="${FMT_RESET}${FG_GREEN}\")\n " # end last container (either FILES or BRANCH)
+PS1+="${FG_BLUE}╰ " # end arrow to prompt
+PS1+="${FG_CYAN}\\$ " # print prompt
+PS1+="${FMT_RESET}"
+export PS1
 
 # Enables different colouring
 LS_COLORS=$LS_COLORS:'di=0;34:ln=35:or=41:ex=31:*.png=32' ; export LS_COLORS

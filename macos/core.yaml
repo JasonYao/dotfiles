@@ -54,7 +54,13 @@ profile: "core"
 actions:
     - action: copy
       files:
-          "fonts/FreeMono.ttf": "~/Library/Fonts/FreeMono.ttf"
+          "fonts/FreeMono/FreeMono.ttf": "~/Library/Fonts/FreeMono.ttf"
+
+          # No ligature version
+          "fonts/NerdFonts/JetBrainsMonoNLRegularNerdFontCompleteMono.ttf": "~/Library/Fonts/JetBrainsMonoNLRegularNerdFontCompleteMono.ttf"
+
+          # Ligature version (shouldn't be needed but included just in case)
+          #"fonts/NerdFonts/JetBrainsMonoRegularNerdFontCompleteMono.ttf": "~/Library/Fonts/JetBrainsMonoRegularNerdFontCompleteMono.ttf"
 # Disabled until I swap to a config version instead of blob
 #    - action: symlink
 #      files:
@@ -63,6 +69,7 @@ actions:
       files:
           "bash_profile.symlink": "~/.bash_profile"
           "inputrc.symlink": "~/.inputrc"
+          "iterm-profile-config.json": "~/Library/Application\ Support/iTerm2/DynamicProfiles/itermprofiles.json"
       hidden: true
     - action: symlink
       files:
