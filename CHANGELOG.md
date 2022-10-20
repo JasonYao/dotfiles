@@ -1,5 +1,17 @@
 # Changelog | Dotfiles
 
+# [1.5.0](https://github.com/JasonYao/dotfiles/compare/v1.4.2...v1.5.0) (2022-10-20)
+
+
+### Bug Fixes
+
+* **shell:** resets the shell back to the normal bash since it errors out otherwise ([e71ad20](https://github.com/JasonYao/dotfiles/commit/e71ad203528180974aabfa1a56106aadb7f20045))
+
+
+### Features
+
+* **powerline:** adds in a new default powerline that responds to directory location ([6137ca6](https://github.com/JasonYao/dotfiles/commit/6137ca61fee5b42f7f9a794491d56a68c24fd365)), closes [#63](https://github.com/JasonYao/dotfiles/issues/63)
+
 ## [1.4.2](https://github.com/JasonYao/dotfiles/compare/v1.4.1...v1.4.2) (2022-10-18)
 
 
